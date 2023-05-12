@@ -22,6 +22,8 @@ Activate enviroment:
     activate
 ```
 
+---
+
 ## Start Django-project
 Install django:
 ```bash
@@ -42,8 +44,12 @@ Run server:
 
 Run migrations:
 ```bash
-    # Inside TikTok directory
-    python3 manage.py migrate
+    python manage.py migrate
 ```
 This create the DB, execute Django migrations, etc.
 It uses by default with SQLite
+
+### Create Django's Superuser
+```bash
+    python manage.py createsuperuser
+```
