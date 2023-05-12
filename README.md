@@ -53,3 +53,19 @@ It uses by default with SQLite
 ```bash
     python manage.py createsuperuser
 ```
+
+---
+
+## Override user model
+Create user app in django:
+```bash
+    python manage.py startapp users
+```
+Now go yo Installed Apps in [settings.py](./TikTok-server/TikTok/TikTok/settings.py) and add 'users' app.
+
+Now we have to tell to Django that this user app will contain all Users. How to do this little override?
+In the same file, go to the very bottom and add the line:
+```python
+# users
+AUTH_USER_MODEL = 'users.User'
+```
