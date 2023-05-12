@@ -69,3 +69,28 @@ In the same file, go to the very bottom and add the line:
 # users
 AUTH_USER_MODEL = 'users.User'
 ```
+
+### Create user Model:
+do in [models.py](./TikTok-server/TikTok/users/models.py):
+```python
+    from django.contrib.auth.models import AbstractUser
+    # AbstractUser include all actual user properties from a django user
+
+    # so now every User will include AbstractUser properties 
+    # + the ones I add here
+    class User(AbstractUser):
+        pass
+```
+
+### Delete actual database in order to regenerate it.
+[db.sqlite3](./TikTok-server/TikTok/db.sqlite3)
+
+MakeMigrations of new user created:
+```bash
+    # generate migrations with new app
+    python manage.py makemigrations
+    # then regenerate db with new migration
+    python manage.py migrate
+```
+
+Then create a Superuser again.
