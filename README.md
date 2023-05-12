@@ -101,3 +101,22 @@ ir oder to show the group, we need to register it in:
 
 Specify what will be seen of each user in Admin Panel:
 [users/admin.py](./TikTok-server/TikTok/users/admin.py) new code
+
+### Login in Django's Admin panel using email
+[users/models.py](./TikTok-server/TikTok/users/models.py)
+```python
+from django.db import models
+
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+```
+when doing this, won't be able to create a new superuser in console, only in django's admin panel.
+If you want to do it by console you will have to comment the lines:
+```python
+    ...
+    # USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = []
+```
