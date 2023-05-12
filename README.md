@@ -94,3 +94,7 @@ MakeMigrations of new user created:
 ```
 
 Then create a Superuser again.
+
+### Show User group in the Django's Admin panel
+ir oder to show the group, we need to register it in:
+[users/admin.py](./TikTok-server/TikTok/users/admin.py)
