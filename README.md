@@ -120,3 +120,14 @@ If you want to do it by console you will have to comment the lines:
     # USERNAME_FIELD = 'email'
     # REQUIRED_FIELDS = []
 ```
+
+---
+
+## automatically API Documentation
+creating Automatic API Documentation in Swagger & redocs.
+For this, will need the 'drf-yasg' package:
+```bash
+    pip install -U drf-yasg
+```
+Now go yo Installed Apps in [settings.py](./TikTok-server/TikTok/TikTok/settings.py) and add 'drf_yasg' app.
+And then write all code written in [TikTok/users.py](./TikTok-server/TikTok/TikTok/urls.py) in this same commit.
