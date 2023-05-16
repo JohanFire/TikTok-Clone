@@ -177,3 +177,24 @@ will open Expo Tools in the emulator.
 
 ### Open app in iOS real device
 Install Expo Go app, then scan QR code when running project
+
+---
+
+## Installing React Navigation
+[React Navigation docs](https://reactnavigation.org/)
+1.- Install it
+```bash
+    npm install @react-navigation/native
+```
+2.- Installing dependencies into an Expo managed project
+```bash
+    npx expo install react-native-screens react-native-safe-area-context
+```
+3.- Go to Hello React Navigation in docs and Install the native stack navigator library, is for stack pages
+```bash
+    npm install @react-navigation/native-stack
+```
+4.- For the bottom menu, go to Guides > Tab navigation
+```bash
+    npm install @react-navigation/bottom-tabs
+```
