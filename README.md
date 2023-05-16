@@ -125,9 +125,18 @@ If you want to do it by console you will have to comment the lines:
 
 ## automatically API Documentation
 creating Automatic API Documentation in Swagger & redocs.
-For this, will need the 'drf-yasg' package:
+For this, will need the [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/readme.html#usage) package:
 ```bash
     pip install -U drf-yasg
 ```
 Now go yo Installed Apps in [settings.py](./TikTok-server/TikTok/TikTok/settings.py) and add 'drf_yasg' app.
 And then write all code written in [TikTok/users.py](./TikTok-server/TikTok/TikTok/urls.py) in this same commit.
+
+---
+
+## Installing Django Rest Framework
+For this, will need the [django-rest-framework](https://www.django-rest-framework.org/) package:
+```bash
+    pip install djangorestframework
+```
+read the docs so you can follow next steps, like adding to "INSTALLED_APPS"...
