@@ -198,3 +198,18 @@ Install Expo Go app, then scan QR code when running project
 ```bash
     npm install @react-navigation/bottom-tabs
 ```
+
+---
+
+## Installing React Native Elements
+[React Native Elements docs](https://reactnativeelements.com/)
+In this case I'm using version 3.4.2, so I wil recommend you to use the same to avoid problems.
+1.- go to 3.4.2 and then go to 'Gettins Started'
+```bash
+    npm install react-native-elements
+    # npm install react-native-elements@3.4.2
+```
+2.- Install react-native-vector-icons 
+```bash
+    npm install react-native-vector-icons
+```
