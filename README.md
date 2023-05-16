@@ -140,3 +140,27 @@ For this, will need the [django-rest-framework](https://www.django-rest-framewor
     pip install djangorestframework
 ```
 read the docs so you can follow next steps, like adding to "INSTALLED_APPS"...
+
+---
+
+# React Native
+
+## Create a new Expo project
+```bash
+    npx create-expo-app TikTok
+```
+
+## Run the project
+```bash
+    cd project-name
+    npm start # you can also use: npx expo start
+```
+or...
+To run your project, navigate to the directory and run one of the following npm commands.
+
+- cd project-name
+- npm run android
+- npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
+- npm run web
+
+---
