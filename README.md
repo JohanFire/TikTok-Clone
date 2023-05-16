@@ -164,3 +164,16 @@ To run your project, navigate to the directory and run one of the following npm 
 - npm run web
 
 ---
+
+### Install a Android Emulator with Android Studio
+In this case I'll create a device with: Pixel_6_Pro_API_33_Tiramisu.
+Once created and opened, you can run expo project and type "a" 
+to open the app in the opened emulator.
+
+```python
+    Ctrl + M
+```
+will open Expo Tools in the emulator.
+
+### Open app in iOS real device
+Install Expo Go app, then scan QR code when running project
