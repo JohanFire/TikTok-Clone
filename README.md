@@ -120,3 +120,60 @@ If you want to do it by console you will have to comment the lines:
     # USERNAME_FIELD = 'email'
     # REQUIRED_FIELDS = []
 ```
+
+---
+
+## automatically API Documentation
+creating Automatic API Documentation in Swagger & redocs.
+For this, will need the [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/readme.html#usage) package:
+```bash
+    pip install -U drf-yasg
+```
+Now go yo Installed Apps in [settings.py](./TikTok-server/TikTok/TikTok/settings.py) and add 'drf_yasg' app.
+And then write all code written in [TikTok/users.py](./TikTok-server/TikTok/TikTok/urls.py) in this same commit.
+
+---
+
+## Installing Django Rest Framework
+For this, will need the [django-rest-framework](https://www.django-rest-framework.org/) package:
+```bash
+    pip install djangorestframework
+```
+read the docs so you can follow next steps, like adding to "INSTALLED_APPS"...
+
+---
+
+# React Native
+
+## Create a new Expo project
+```bash
+    npx create-expo-app TikTok
+```
+
+## Run the project
+```bash
+    cd project-name
+    npm start # you can also use: npx expo start
+```
+or...
+To run your project, navigate to the directory and run one of the following npm commands.
+
+- cd project-name
+- npm run android
+- npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
+- npm run web
+
+---
+
+### Install a Android Emulator with Android Studio
+In this case I'll create a device with: Pixel_6_Pro_API_33_Tiramisu.
+Once created and opened, you can run expo project and type "a" 
+to open the app in the opened emulator.
+
+```python
+    Ctrl + M
+```
+will open Expo Tools in the emulator.
+
+### Open app in iOS real device
+Install Expo Go app, then scan QR code when running project
