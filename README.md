@@ -243,3 +243,13 @@ then run Django's server specifying IP with Port
 ```bash
     python manage.py runserver 192.168.1.13:8000
 ```
+
+--- 
+
+## Creating User Model
+once you defined the User Model in [models.py](./TikTok-server/TikTok/users/models.py), make the migrations to apply changes in db
+```bash
+    python manage.py makemigrations
+
+    python manage.py migrate
+```
