@@ -223,3 +223,23 @@ First, let's install [React Native Async Storage](https://www.npmjs.com/package/
 ```npm
     npm i @react-native-async-storage/async-storage@1.17.11
 ```
+
+---
+
+# Authentication System
+## Add a local IP to Django's server.
+this is neccessary & helpful if you are working with Android Emulator
+
+To get your IPv4:
+```bash
+    # if you are in Windows
+    ipconfig
+
+    # if you are in linux
+    ifconfig
+```
+
+then run Django's server specifying IP with Port
+```bash
+    python manage.py runserver 192.168.1.13:8000
+```

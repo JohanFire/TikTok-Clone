@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-8$x(+(5&e3*(*0)%8lb-#2locyqhiji=w!04slz6cjsso-&6)8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.1.13"]
+# ALLOWED_HOSTS = ["*"] # this means all IPs are allowed to join
 
 
 # Application definition
