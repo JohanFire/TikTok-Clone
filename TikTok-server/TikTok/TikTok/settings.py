@@ -11,21 +11,26 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# environ init
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8$x(+(5&e3*(*0)%8lb-#2locyqhiji=w!04slz6cjsso-&6)8'
+SECRET_KEY = env.str('SECRET_KEY_LOCAL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ["192.168.1.13"]
+ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 # ALLOWED_HOSTS = ["*"] # this means all IPs are allowed to join
 
 
@@ -39,8 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drf_yasg',
-    'rest_framework',
+    "drf_yasg",
+    "rest_framework",
+    "cloudinary_storage",
 ]
 
 MIDDLEWARE = [
@@ -116,11 +122,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -128,3 +129,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # users
 AUTH_USER_MODEL = 'users.User'
+
+# STATIC FILES
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_TMP = os.path.join(BASE_DIR, 'static')
+STATIC_URL = 'static/'
+
+os.makedirs(STATIC_TMP, exist_ok=True)
+os.makedirs(STATIC_ROOT, exist_ok=True)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+
+# CLOUDINARY
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env.str('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env.str('CLOUDINARY_API_KEY'),
+    'API_SECRET': env.str('CLOUDINARY_API_SECRET')
+}
