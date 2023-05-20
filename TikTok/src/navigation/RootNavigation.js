@@ -5,7 +5,7 @@ import { useTheme } from "../hooks";
 
 export function RootNavigation() {
     const { darkMode, toggleTheme } = useTheme()
-    console.log(useTheme());
+    // console.log(useTheme());
 
     return (
         <SafeAreaView>
