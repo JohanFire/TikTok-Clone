@@ -177,3 +177,49 @@ will open Expo Tools in the emulator.
 
 ### Open app in iOS real device
 Install Expo Go app, then scan QR code when running project
+
+---
+
+## Installing React Navigation
+[React Navigation docs](https://reactnavigation.org/)
+1.- Install it
+```bash
+    npm install @react-navigation/native
+```
+2.- Installing dependencies into an Expo managed project
+```bash
+    npx expo install react-native-screens react-native-safe-area-context
+```
+3.- Go to Hello React Navigation in docs and Install the native stack navigator library, is for stack pages
+```bash
+    npm install @react-navigation/native-stack
+```
+4.- For the bottom menu, go to Guides > Tab navigation
+```bash
+    npm install @react-navigation/bottom-tabs
+```
+
+---
+
+## Installing React Native Elements
+[React Native Elements docs](https://reactnativeelements.com/)
+In this case I'm using version 3.4.2, so I wil recommend you to use the same to avoid problems.
+1.- go to 3.4.2 and then go to 'Gettins Started'
+```bash
+    npm install react-native-elements
+    # npm install react-native-elements@3.4.2
+```
+2.- Install react-native-vector-icons 
+```bash
+    npm install react-native-vector-icons
+```
+
+--- 
+
+## Creating ThemeContext
+Here will be the logic of all the Theme, of how will work the LightMode/DarkMode using a custom Hook..
+
+First, let's install [React Native Async Storage](https://www.npmjs.com/package/@react-native-async-storage/async-storage), so we can save user's info in storage, so when he close the app, it can select the previous saved theme.
+```npm
+    npm i @react-native-async-storage/async-storage@1.17.11
+```
