@@ -18,7 +18,7 @@ export function ThemeProvider(props) {
     useEffect(() => {
         (async () =>{
             const response = await AsyncStorage.getItem("theme")
-            console.log(`theme: ${response}`);
+            // console.log(`theme: ${response}`);
             if(response) setDarkMode(JSON.parse(response))
         })() 
     }, [])
