@@ -1,5 +1,4 @@
-import { SafeAreaView } from 'react-native';
-import { Text, Button } from "react-native-elements";
+import { Text } from "react-native-elements";
 
 import { ThemeProvider } from "./src/context";
 import { RootNavigation } from "./src/navigation/RootNavigation";
