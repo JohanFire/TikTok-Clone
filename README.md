@@ -213,3 +213,13 @@ In this case I'm using version 3.4.2, so I wil recommend you to use the same to 
 ```bash
     npm install react-native-vector-icons
 ```
+
+--- 
+
+## Creating ThemeContext
+Here will be the logic of all the Theme, of how will work the LightMode/DarkMode using a custom Hook..
+
+First, let's install [React Native Async Storage](https://www.npmjs.com/package/@react-native-async-storage/async-storage), so we can save user's info in storage, so when he close the app, it can select the previous saved theme.
+```npm
+    npm i @react-native-async-storage/async-storage@1.17.11
+```
