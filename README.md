@@ -345,3 +345,18 @@ Due Django's is not well prepared to manage static files, altough it is possible
         # ...
     ]
 ```
+
+---
+
+## Endpoint to register new users
+
+create new directory [api](./TikTok-server/TikTok/users/api/) inside users app, then create files:
+    - [_init_.py](./TikTok-server/TikTok/users/api/__init__.py)
+    - [router.py](./TikTok-server/TikTok/users/api/router.py)
+    - [serializers.py](./TikTok-server/TikTok/users/api/serializers.py)
+    - [views.py](./TikTok-server/TikTok/users/api/views.py)
+
+then you can test if works with PostMan
+
+### Serializer
+sirven para formatear o decirle a Django exactamente que datos quieres, o sea decirle de este modelo, de esta base datos, necesito solo estos datos
