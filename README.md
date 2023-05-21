@@ -356,7 +356,27 @@ create new directory [api](./TikTok-server/TikTok/users/api/) inside users app, 
     - [serializers.py](./TikTok-server/TikTok/users/api/serializers.py)
     - [views.py](./TikTok-server/TikTok/users/api/views.py)
 
-then you can test if works with PostMan
+then you can test if works with PostMan:
+![image](./TikTok-server/screenshots/register_postman.png)
 
 ### Serializer
 sirven para formatear o decirle a Django exactamente que datos quieres, o sea decirle de este modelo, de esta base datos, necesito solo estos datos
+
+--- 
+
+## Endpoint to login users with JWT
+so when user login, we receive the access token & refresh token before making loging endpoint.
+
+We will be using [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+and install the package:
+```bash
+    pip install djangorestframework-simplejwt
+```
+
+![image](./TikTok-server/screenshots/login_postman.png)
+
+In the code, I set the access token to expire in 1 minute, so when this session expires, it will refresh with the refresh token through the refresh_token endpoint in the api.
+
+then you can test login & refresh token with PostMan
+
+![image](./TikTok-server/screenshots/refresh-token_postman.png)
