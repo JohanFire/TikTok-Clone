@@ -8,7 +8,6 @@ import { styled } from "./AuthScreen.styles";
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 export function AuthScreen(props) {
-    console.log(props);
     const { navigation } = props;
     const { toggleTheme } = useTheme();
     const styles = styled()
@@ -24,7 +23,9 @@ export function AuthScreen(props) {
     return (
         <SafeAreaView style={styles.content}>
             <View style={styles.optionContent}>
-                <Text style={styles.title}>Regístrate en TikTok Clone</Text>
+                <Text style={styles.title}>
+                    Regístrate en <Text style={styles.titleColor}>TikTok Clone</Text>
+                    </Text>
                 <Text style={styles.info}>
                     Crea un perfil, sigue a tus amigos, sube tus propios TikToks y más.
                 </Text>

@@ -14,8 +14,6 @@ export function AuthNavigation() {
     const { theme } = useTheme();
     const MyTheme = getNavigationTheme(theme);
 
-    console.log(`MyTheme: ${MyTheme}`);
-
     return (
         <NavigationContainer theme={MyTheme}>
             <Stack.Navigator screenOptions={{ headerTransparent: true}}>

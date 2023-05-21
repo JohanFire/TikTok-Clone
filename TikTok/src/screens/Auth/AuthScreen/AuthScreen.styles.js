@@ -28,6 +28,10 @@ export const styled = () => {
             textAlign: "center",
             marginTop: 50,
         },
+        titleColor: {
+            color: "#b2edf5",
+            fontWeight: "bold",
+        },
         info: {
             marginTop: 15,
             textAlign: "center",
