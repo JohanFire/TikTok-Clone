@@ -18,7 +18,7 @@ export function validation_schema() {
             .required("Campo obligatorio"),
         first_name: Yup.string().required("Campo obligatorio"),
         last_name: Yup.string().required("Campo obligatorio"),
-        username: Yup.string().required("Campo obligatorio"),
+        username: Yup.string().required("Campo obligatorio").noSpacing("Espacios inválidos"),
         password: Yup.string().required("Campo obligatorio"),
         repeatPassword: Yup.string()
             .required("Campo obligatorio")
