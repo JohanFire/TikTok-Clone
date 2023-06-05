@@ -17,6 +17,11 @@ async function get_tokens() {
     };
 }
 
+async function remove_tokens() {
+    await AsyncStorage.removeItem(ENV.JWT.ACCESS);
+    await AsyncStorage.removeItem(ENV.JWT.REFRESH);
+}
+
 function has_expired(token) {
     if (!token) return false;
 
@@ -38,4 +43,5 @@ export const jwt = {
     save_tokens,
     get_tokens,
     has_expired,
+    remove_tokens,
 };

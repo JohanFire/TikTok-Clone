@@ -79,6 +79,8 @@ export function AuthProvider(props) {
         setAuth(null);
         setAccessToken(null);
         setRefreshToken(null);
+
+        jwt.remove_tokens();
     };
 
     const data = {
