@@ -380,3 +380,8 @@ In the code, I set the access token to expire in 1 minute, so when this session 
 then you can test login & refresh token with PostMan
 
 ![image](./TikTok-server/screenshots/refresh-token_postman.png)
+
+--
+
+## Validating Sign Up/Sign In forms 
+using Formik & Yup packages
