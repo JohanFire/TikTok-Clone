@@ -5,6 +5,9 @@ import { useFormik } from "formik";
 
 import { styles } from "./LoginEmailScreen.styles";
 import { initial_values, validation_schema } from "./LoginEmailScreen.data";
+import { Auth } from "../../../api";
+
+const auth = new Auth();
 
 export function LoginEmailScreen() {
     const [showPassword, setShowPassword] = useState(false)
@@ -15,9 +18,15 @@ export function LoginEmailScreen() {
         initialValues: initial_values(),
         validationSchema: validation_schema(),
         validationOnChange: false,
-        onSubmit: (formValue) => {
-            console.log(formValue);
-        }
+        onSubmit: async (formValue) => {
+            try {
+                const response = await auth.login(formValue)
+                console.log(response);
+            } catch (error) {
+                console.error(error.detail);
+                console.log(error);
+            }
+        },
     })
 
     return (
