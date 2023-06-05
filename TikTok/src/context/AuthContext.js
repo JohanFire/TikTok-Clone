@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import jwtDecode from "jwt-decode";
 
 export const AuthContext = createContext({
     auth: undefined,
@@ -15,7 +16,19 @@ export function AuthProvider(props) {
     const [refreshToken, setRefreshToken] = useState(null)
 
     const login = (tokens) => {
-        console.log(tokens);
+        if (tokens.access && tokens.refresh) {
+            console.log('dentro del login');
+            console.log(`\nAccess: ${tokens.access} \n\nRefresh: ${tokens.refresh}\n.`);
+
+            const decodedToken = jwtDecode(tokens.access)
+            console.log(decodedToken);
+            setAuth(decodedToken)
+
+            setAccessToken(tokens.access)
+            setRefreshToken(tokens.refresh)
+        } else {
+            logout();
+        }
     }
 
     const logout = () => {

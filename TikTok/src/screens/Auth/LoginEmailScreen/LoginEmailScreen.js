@@ -6,11 +6,13 @@ import { useFormik } from "formik";
 import { styles } from "./LoginEmailScreen.styles";
 import { initial_values, validation_schema } from "./LoginEmailScreen.data";
 import { Auth } from "../../../api";
+import { useAuth } from "../../../hooks/useAuth";
 
 const auth = new Auth();
 
 export function LoginEmailScreen() {
     const [showPassword, setShowPassword] = useState(false)
+    const { login } = useAuth();
 
     const on_show_password = () => setShowPassword((prevState) => !prevState)
 
@@ -21,7 +23,8 @@ export function LoginEmailScreen() {
         onSubmit: async (formValue) => {
             try {
                 const response = await auth.login(formValue)
-                console.log(response);
+                login(response)
+                // console.log(response);
             } catch (error) {
                 console.error(error.detail);
                 console.log(error);

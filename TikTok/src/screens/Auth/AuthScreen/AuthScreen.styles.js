@@ -11,7 +11,6 @@ import { useTheme } from "react-native-elements";
 /* cuando use "styled" sera porque quiero utilizar colores del Tema darkMode/lightMode */
 export const styled = () => {
     const { theme } = useTheme();
-    console.log(theme);
 
     return StyleSheet.create({
         content: {
