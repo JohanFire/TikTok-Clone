@@ -223,3 +223,165 @@ First, let's install [React Native Async Storage](https://www.npmjs.com/package/
 ```npm
     npm i @react-native-async-storage/async-storage@1.17.11
 ```
+
+---
+
+# Authentication System
+## Add a local IP to Django's server.
+this is neccessary & helpful if you are working with Android Emulator
+
+To get your IPv4:
+```bash
+    # if you are in Windows
+    ipconfig
+
+    # if you are in linux
+    ifconfig
+```
+
+then run Django's server specifying IP with Port
+```bash
+    python manage.py runserver 192.168.1.13:8000
+```
+
+--- 
+
+## Creating User Model
+once you defined the User Model in [models.py](./TikTok-server/TikTok/users/models.py), make the migrations to apply changes in db
+```bash
+    python manage.py makemigrations
+
+    python manage.py migrate
+```
+
+---
+
+## Creating .env enviroment variables for security
+create a ".env" file inside django project, I mean will be in the same folder as [settings.py](./TikTok-server/TikTok/TikTok/settings.py)
+
+1.- install [django-environ](https://pypi.org/project/django-environ/)
+```bash
+    pip install django-environ
+```
+
+2.- inside .env file:
+```env
+    # example
+
+    # DJANGO settings
+    SECRET_KEY_LOCAL=hola
+    DEBUG=bool
+    ALLOWED_HOSTS=host_IP
+
+    # CLOUDINARY
+    CLOUDINARY_CLOUD_NAME=123
+    CLOUDINARY_API_KEY=api12345
+    CLOUDINARY_API_SECRET=secret123
+```
+
+in the [settings.py](./TikTok-server/TikTok/TikTok/settings.py) you have to:
+```python
+    import environ
+
+    # Build paths inside the project like this: BASE_DIR / 'subdir'.
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
+    # environ init
+    env = environ.Env()
+    environ.Env.read_env()
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = env.str('SECRET_KEY_LOCAL')
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = env.bool('DEBUG', default=False)
+
+    ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
+    # ALLOWED_HOSTS = ["*"] # this means all IPs are allowed to join
+
+    ...
+
+    # CLOUDINARY
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': env.str('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': env.str('CLOUDINARY_API_KEY'),
+        'API_SECRET': env.str('CLOUDINARY_API_SECRET')
+    }
+```
+
+---
+
+## Cloudinary & Static Files
+we will use [Cloudinary](https://cloudinary.com/) to manage & visualize all our static files(photos & videos).
+Due Django's is not well prepared to manage static files, altough it is possible.
+
+1.- in order to connect Cloudinary with Django, we must use [django-cloudinary-storage](https://pypi.org/project/django-cloudinary-storage/):
+```bash
+    pip install django-cloudinary-storage
+```
+
+2.- put in [INSTALLED_APPS](./TikTok-server/TikTok/TikTok/settings.py):
+```python
+    #Once you have done that, add cloudinary and cloudinary_storage to you installed apps in your settings.py. 
+    # If you are going to use this package for static and/or media files, 
+    # make sure that cloudinary_storage is before django.contrib.staticfiles:
+    INSTALLED_APPS = [
+        # ...
+        'cloudinary_storage',
+        'django.contrib.staticfiles',
+        'cloudinary',
+        # ...
+    ]
+
+
+    # because django-cloudinary-storage overwrites Django collectstatic command. 
+    # If you are going to use it only for media files though, 
+    # it is django.contrib.staticfiles which has to be first:
+    INSTALLED_APPS = [
+        # ...
+        'django.contrib.staticfiles',
+        'cloudinary_storage',
+        'cloudinary',
+        # ...
+    ]
+```
+
+---
+
+## Endpoint to register new users
+
+create new directory [api](./TikTok-server/TikTok/users/api/) inside users app, then create files:
+    - [_init_.py](./TikTok-server/TikTok/users/api/__init__.py)
+    - [router.py](./TikTok-server/TikTok/users/api/router.py)
+    - [serializers.py](./TikTok-server/TikTok/users/api/serializers.py)
+    - [views.py](./TikTok-server/TikTok/users/api/views.py)
+
+then you can test if works with PostMan:
+![image](./TikTok-server/screenshots/register_postman.png)
+
+### Serializer
+sirven para formatear o decirle a Django exactamente que datos quieres, o sea decirle de este modelo, de esta base datos, necesito solo estos datos
+
+--- 
+
+## Endpoint to login users with JWT
+so when user login, we receive the access token & refresh token before making loging endpoint.
+
+We will be using [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+and install the package:
+```bash
+    pip install djangorestframework-simplejwt
+```
+
+![image](./TikTok-server/screenshots/login_postman.png)
+
+In the code, I set the access token to expire in 1 minute, so when this session expires, it will refresh with the refresh token through the refresh_token endpoint in the api.
+
+then you can test login & refresh token with PostMan
+
+![image](./TikTok-server/screenshots/refresh-token_postman.png)
+
+--
+
+## Validating Sign Up/Sign In forms 
+using Formik & Yup packages

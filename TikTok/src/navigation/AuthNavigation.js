@@ -4,9 +4,9 @@ import React from 'react'
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { AuthScreen } from "../screens/Auth";
+import { AuthScreen, LoginEmailScreen, RegisterEmailScreen } from "../screens/Auth";
 import { useTheme } from "../hooks";
-import { getNavigationTheme } from "../utils";
+import { getNavigationTheme, screen } from "../utils";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,14 +14,23 @@ export function AuthNavigation() {
     const { theme } = useTheme();
     const MyTheme = getNavigationTheme(theme);
 
-    console.log(`MyTheme: ${MyTheme}`);
-
     return (
         <NavigationContainer theme={MyTheme}>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{ headerTransparent: true}}>
                 <Stack.Screen
-                    name='auth'
+                    name={screen.auth.auth}
                     component={AuthScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={screen.auth.loginEmail}
+                    component={LoginEmailScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={screen.auth.registerEmail}
+                    component={RegisterEmailScreen}
+                    options={{headerShown: false}}
                 />
             </Stack.Navigator>
         </NavigationContainer>

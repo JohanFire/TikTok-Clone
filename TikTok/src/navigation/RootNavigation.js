@@ -1,11 +1,11 @@
 import { StatusBar } from "react-native";
 
-import { useTheme } from "../hooks";
+import { useTheme, useAuth } from "../hooks";
 import { AppNavigation } from "./AppNavigation";
 import { AuthNavigation } from "./AuthNavigation";
 
 export function RootNavigation() {
-    const auth = null;
+    const { auth } = useAuth();
     const { darkMode, toggleTheme } = useTheme();
 
     return (
