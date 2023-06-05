@@ -17,7 +17,25 @@ async function get_tokens() {
     };
 }
 
+function has_expired(token) {
+    if (!token) return false;
+
+    const { exp } = jwtDecode(token)
+    const currentDate = new Date().getTime();
+    const expiredDate = new Date(exp * 1000).getTime();
+    // console.log("currentDate: ", currentDate);
+    // console.log("expiredDate: ", expiredDate);
+    // console.log(" ");
+
+    if (currentDate > expiredDate) {
+        return true
+    } else {
+        return false
+    }
+}
+
 export const jwt = {
     save_tokens,
     get_tokens,
+    has_expired,
 };
