@@ -1,4 +1,8 @@
 
+const app = {
+    tabs: "Tab",
+}
+
 const auth = {
     auth: "auth",
     registerEmail: "RegisterEmail",
@@ -7,4 +11,5 @@ const auth = {
 
 export const screen = {
     auth,
+    app,
 };
