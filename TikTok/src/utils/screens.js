@@ -16,6 +16,7 @@ const home = {
 
 const friends = {
     tab: "FriendsTab",
+    friends: "Friends",
 }
 
 const upload = {
