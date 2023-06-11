@@ -7,7 +7,6 @@ import { Button } from "react-native-elements";
 
 import { useTheme, useAuth } from "../hooks";
 import { getNavigationTheme, screen } from "../utils";
-import { TestScreen } from "../screens/TestScreen";
 import { TabNavigation } from "./TabNavigation";
 
 const Stack = createNativeStackNavigator();

@@ -2,7 +2,6 @@ import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
 
-import { TestScreen } from "../screens/TestScreen";
 import { screen } from "../utils";
 import {
     HomeStack,
