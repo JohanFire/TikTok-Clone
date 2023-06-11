@@ -5,6 +5,7 @@ import { Text } from 'react-native-elements'
 import { Video } from "../../api";
 import { useAuth } from "../../hooks";
 import { ENV } from "../../utils";
+import { VideoFeed } from "../Shared";
 
 const videoController = new Video();
 const { height } = Dimensions.get("window")
@@ -33,26 +34,14 @@ export function ForYouVideos() {
             data={videos}
             decelerationRate="fast"
             keyExtractor={(_, index) => index.toString()}
-            renderItem={({ item, index }) => (
-                <View index={index} style={{ height: height - ENV.TAB_MENU_HEIGHT }} >
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>{item.description}</Text>
-                </View>
-            )}
+            renderItem={({ item, index }) =>
+                <VideoFeed index={index} item={item} />
+            }
             removeClippedSubviews={false}
             showsVerticalScrollIndicator={false}
             snapToInterval={height - ENV.TAB_MENU_HEIGHT}
-            viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50}}
-            onScrollToIndexFailed={() => {}}
+            viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50 }}
+            onScrollToIndexFailed={() => { }}
         />
     )
 }
