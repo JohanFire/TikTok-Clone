@@ -8,6 +8,7 @@ import { styles } from "./VideoFeed.styles";
 import { Info } from "../Info";
 import { Timeline } from "../Timeline";
 import { Profile } from "../Profile";
+import { Likes } from "../Likes";
 
 export function VideoFeed(props) {
     const { item, index, indexShow, style } = props;
@@ -42,17 +43,22 @@ export function VideoFeed(props) {
 
             <View style={styles.block__content} >
                 <View style={styles.block__left}>
-                    <Info username={user.username} description={item.description} /> 
+                    <Info username={user.username} description={item.description} />
                 </View>
                 <View style={styles.block__right}>
                     <Profile idUser={item.user} image={user.avatar} />
-                    <Text>LIKES</Text>
+                    <Likes 
+                        idVideo={item.id}
+                        // likesCounter={item.likes_counter}
+                        likesCounter={300}
+                        idTargetUser={user.id}
+                    />
                     <Text>COMMENTS</Text>
                     <Text>SHARED</Text>
                 </View>
             </View>
 
-            {videoStatus && <Timeline status={videoStatus} /> }
+            {videoStatus && <Timeline status={videoStatus} />}
         </Pressable>
     )
 }
