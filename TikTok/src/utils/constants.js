@@ -7,6 +7,7 @@ export const ENV = {
         REGISTER: "auth/register",
         LOGIN: "auth/login",
         REFRESH_TOKEN: "auth/refresh_token",
+        VIDEO: "video",
     },
 
     JWT:{

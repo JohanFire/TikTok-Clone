@@ -39,6 +39,7 @@ ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 
 INSTALLED_APPS = [
     "users",
+    "video",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "cloudinary_storage",
     "rest_framework_simplejwt",
+    "django_filters", 
 ]
 
 MIDDLEWARE = [
@@ -126,7 +128,8 @@ USE_TZ = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 SIMPLE_JWT = {
