@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
         height: height - ENV.TAB_MENU_HEIGHT,
         weight: width,
     },
+    video: {
+        width: "100%",
+        height: "100%",
+    },
     block__content: {
         position: "absolute",
         width: "100%",
