@@ -4,7 +4,9 @@ import { Text, Input, Image } from 'react-native-elements'
 
 import { styles } from "./VideoData.styles";
 
-export function VideoData() {
+export function VideoData(props) {
+    const { formik } = props;
+
     return (
         <View style={styles.content}>
             <Input
@@ -12,6 +14,8 @@ export function VideoData() {
                 containerStyle={styles.input__container}
                 inputContainerStyle={styles.input__container}
                 inputStyle={styles.input}
+                multiline
+                onChangeText={text => formik.setFieldValue("description", text)}
             />
 
             <Pressable
