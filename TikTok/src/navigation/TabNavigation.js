@@ -3,7 +3,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { TestScreen } from "../screens/TestScreen";
 import { screen } from "../utils";
-import { HomeStack, FriendsStack, UploadStack, NotificationsStack } from "./stacks";
+import {
+    HomeStack,
+    FriendsStack,
+    UploadStack,
+    NotificationsStack,
+    AccountStack
+} from "./stacks";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,9 +34,12 @@ export function TabNavigation() {
             />
             <Tab.Screen name={screen.notifications.tab}
                 component={NotificationsStack}
+                options={{ headerShown: false }}
+            />
+            <Tab.Screen name={screen.account.tab}
+                component={AccountStack}
                 options={{headerShown: false}}
             />
-            <Tab.Screen name={screen.account.tab} component={TestScreen} />
         </Tab.Navigator>
     )
 }

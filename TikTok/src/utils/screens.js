@@ -32,6 +32,12 @@ const notifications = {
 
 const account = {
     tab: "AccountTab ",
+    account: "AccountTab",
+    settings: "SetttingsTab",
+    changeName: "ChangeNameTab",
+    changeDescription: "ChangeDescriptionTab",
+    changeWebsite: "ChangeWebsiteTab",
+    changeInstagram: "ChangeInstagramTab",
 }
 
 export const screen = {
