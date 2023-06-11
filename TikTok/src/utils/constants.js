@@ -13,5 +13,10 @@ export const ENV = {
     JWT:{
         ACCESS: "access",
         REFRESH: "refresh",
+    },
+
+    TYPE_VIDEO: {
+        FOLLOWING: "following",
+        FOR_YOU: "forYou",
     }
 }
