@@ -25,7 +25,7 @@ export function ForYouVideos() {
                 }
             })()
         }
-    }, [])
+    }, [accessToken])
 
     if (!videos) return null;
 
