@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FlatList, Dimensions, View } from 'react-native'
 import { Text } from 'react-native-elements'
 
@@ -12,6 +12,7 @@ const { height } = Dimensions.get("window")
 
 export function ForYouVideos() {
     const [videos, setVideos] = useState(null);
+    const [indexStart, setIndexStart] = useState(null)
     const { accessToken } = useAuth();
 
     useEffect(() => {
@@ -27,6 +28,10 @@ export function ForYouVideos() {
         }
     }, [accessToken])
 
+    const onViewChangeRef = useRef(({ viewableItems }) => {
+        setIndexStart(viewableItems[0].index);
+    }); 
+
     if (!videos) return null;
 
     return (
@@ -35,12 +40,14 @@ export function ForYouVideos() {
             decelerationRate="fast"
             keyExtractor={(_, index) => index.toString()}
             renderItem={({ item, index }) =>
-                <VideoFeed index={index} item={item} />
+                <VideoFeed index={index} item={item} indexShow={indexStart} />
             }
             removeClippedSubviews={false}
             showsVerticalScrollIndicator={false}
             snapToInterval={height - ENV.TAB_MENU_HEIGHT}
+            onViewableItemsChanged={onViewChangeRef.current}
             viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50 }}
+            initialScrollIndex={indexStart}
             onScrollToIndexFailed={() => { }}
         />
     )
