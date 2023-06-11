@@ -20,16 +20,16 @@ export class Video {
             uri: Platform.OS === "ios"
                 ? data.videoUri.replace("file://", "")
                 : data.videoUri,
-            });
-            
-            const imageType = data.imageUri.substr(data.imageUri.lastIndexOf(".") + 1);
-            
-            formData.append("image", {
-                name: `image.${imageType}`,
-                type: `imageType/${imageType}`,
-                uri: Platform.OS === "ios"
-                    ? data.imageUri.replace("file://", "")
-                    : data.imageUri,
+        });
+
+        const imageType = data.imageUri.substr(data.imageUri.lastIndexOf(".") + 1);
+
+        formData.append("image", {
+            name: `image.${imageType}`,
+            type: `imageType/${imageType}`,
+            uri: Platform.OS === "ios"
+                ? data.imageUri.replace("file://", "")
+                : data.imageUri,
         })
 
         const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO}/`;
@@ -47,5 +47,22 @@ export class Video {
         if (response.status !== 201) throw result;
 
         return result
+    }
+
+    async get_all_videos(token) {
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO}/`;
+        const params = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if (response.status !== 200) throw result;
+
+        return result;
     }
 }
