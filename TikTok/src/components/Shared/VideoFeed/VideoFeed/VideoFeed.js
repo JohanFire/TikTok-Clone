@@ -5,11 +5,13 @@ import { Video } from "expo-av";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { styles } from "./VideoFeed.styles";
+import { Info } from "../Info";
 
 export function VideoFeed(props) {
     const { item, index, indexShow } = props;
     const [isStarted, setIsStarted] = useState(false)
     const video = useRef(null);
+    const user = item.user_data;
 
     useFocusEffect(
         useCallback(() => {
@@ -25,7 +27,6 @@ export function VideoFeed(props) {
             style={styles.content}
             onPress={startPauseVideo}
         >
-            {/* VIDEO REPRODUCER goes here */}
             <Video
                 ref={video}
                 style={styles.video}
@@ -37,10 +38,7 @@ export function VideoFeed(props) {
 
             <View style={styles.block__content} >
                 <View style={styles.block__left}>
-                    <Text>{item.user_data.username}</Text>
-                    <Text
-                        style={{ marginBottom: 30 }}
-                    >{item.description}</Text>
+                    <Info username={user.username} description={item.description} /> 
                 </View>
                 <View style={styles.block__right}>
                     <Text>PROFILE</Text>
@@ -50,7 +48,6 @@ export function VideoFeed(props) {
                 </View>
             </View>
 
-            {/* ToDo: TIME LINE */}
             <Text>TIME LINE</Text>
         </Pressable>
     )
