@@ -30,7 +30,7 @@ export function VideoData(props) {
                 containerStyle={styles.input__container}
                 inputContainerStyle={styles.input__container}
                 inputStyle={styles.input}
-                multiline
+                // multiline
                 onChangeText={text => formik.setFieldValue("description", text)}
             />
 
