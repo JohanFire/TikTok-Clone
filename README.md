@@ -381,7 +381,16 @@ then you can test login & refresh token with PostMan
 
 ![image](./TikTok-server/screenshots/refresh-token_postman.png)
 
---
+---
 
 ## Validating Sign Up/Sign In forms 
 using Formik & Yup packages
+
+---
+
+# Video Publishing
+## Create video app in Django
+```bash
+    python manage.py startapp video
+```
+Now go yo Installed Apps in [settings.py](./TikTok-server/TikTok/TikTok/settings.py) and add 'video' app.
