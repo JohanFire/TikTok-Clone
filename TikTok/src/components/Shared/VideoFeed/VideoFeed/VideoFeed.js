@@ -6,10 +6,12 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { styles } from "./VideoFeed.styles";
 import { Info } from "../Info";
+import { Timeline } from "../Timeline";
 
 export function VideoFeed(props) {
     const { item, index, indexShow } = props;
     const [isStarted, setIsStarted] = useState(false)
+    const [videoStatus, setVideoStatus] = useState(null)
     const video = useRef(null);
     const user = item.user_data;
 
@@ -34,6 +36,7 @@ export function VideoFeed(props) {
                 resizeMode='cover'
                 isLooping
                 shouldPlay={isStarted}
+                onPlaybackStatusUpdate={(status) => setVideoStatus(status)}
             />
 
             <View style={styles.block__content} >
@@ -48,7 +51,7 @@ export function VideoFeed(props) {
                 </View>
             </View>
 
-            <Text>TIME LINE</Text>
+            {videoStatus && <Timeline status={videoStatus} /> }
         </Pressable>
     )
 }
