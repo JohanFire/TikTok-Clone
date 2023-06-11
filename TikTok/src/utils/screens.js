@@ -27,6 +27,7 @@ const upload = {
 
 const notifications = {
     tab: "notificationsTab ",
+    notifications: "Notifications",
 }
 
 const account = {
