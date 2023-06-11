@@ -8,6 +8,7 @@ coreschema==0.0.4
 Django==4.2.1
 django-cloudinary-storage==0.3.0
 django-environ==0.10.0
+django-filter==23.2
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 drf-yasg==1.21.5
