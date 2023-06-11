@@ -9,7 +9,7 @@ import { Info } from "../Info";
 import { Timeline } from "../Timeline";
 
 export function VideoFeed(props) {
-    const { item, index, indexShow } = props;
+    const { item, index, indexShow, style } = props;
     const [isStarted, setIsStarted] = useState(false)
     const [videoStatus, setVideoStatus] = useState(null)
     const video = useRef(null);
@@ -26,7 +26,7 @@ export function VideoFeed(props) {
 
     return (
         <Pressable
-            style={styles.content}
+            style={[styles.content, style]}
             onPress={startPauseVideo}
         >
             <Video
