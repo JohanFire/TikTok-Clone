@@ -7,6 +7,12 @@ const auth = {
 
 const app = {
     tab: "Tab",
+    followers: "Followers",
+    followeds: "Followeds",
+    user: "User",
+    video: "Video",
+    videosPublised: "VideosPublished",
+    videosFavorites: "VideosFavorites",
 }
 
 const home = {
