@@ -21,6 +21,8 @@ const friends = {
 
 const upload = {
     tab: "UploadTab ",
+    upload: "Upload",
+    publishVideo: "PublishVideo",
 }
 
 const notifications = {
