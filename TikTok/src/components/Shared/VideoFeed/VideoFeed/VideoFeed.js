@@ -7,6 +7,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { styles } from "./VideoFeed.styles";
 import { Info } from "../Info";
 import { Timeline } from "../Timeline";
+import { Profile } from "../Profile";
 
 export function VideoFeed(props) {
     const { item, index, indexShow, style } = props;
@@ -44,7 +45,7 @@ export function VideoFeed(props) {
                     <Info username={user.username} description={item.description} /> 
                 </View>
                 <View style={styles.block__right}>
-                    <Text>PROFILE</Text>
+                    <Profile idUser={item.user} image={user.avatar} />
                     <Text>LIKES</Text>
                     <Text>COMMENTS</Text>
                     <Text>SHARED</Text>
