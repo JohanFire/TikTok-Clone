@@ -10,6 +10,7 @@ import { Timeline } from "../Timeline";
 import { Profile } from "../Profile";
 import { Likes } from "../Likes";
 import { Comments } from "../Comments";
+import { Share } from "../Share";
 
 export function VideoFeed(props) {
     const { item, index, indexShow, style } = props;
@@ -58,7 +59,11 @@ export function VideoFeed(props) {
                         idUser={user.is}
                         idVideo={item.id}
                     />
-                    <Text>SHARED</Text>
+                    <Share 
+                        idVideo={item.id}
+                        shareCounter={item.share_counter}
+                        idTargetUser={user.id}
+                    />
                 </View>
             </View>
 
