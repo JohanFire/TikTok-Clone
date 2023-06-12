@@ -65,4 +65,24 @@ export class Video {
 
         return result;
     }
+
+    async share_video(token, idVideo, total){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO_ACTIONS}/${idVideo}/`;
+        const params = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({shared_counter: total}),
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if (response.status !== 200) throw result
+
+        return result
+    }
+
 }

@@ -9,6 +9,7 @@ export const ENV = {
         LOGIN: "auth/login",
         REFRESH_TOKEN: "auth/refresh_token",
         VIDEO: "video",
+        VIDEO_ACTIONS: "video/actions",
     },
 
     JWT:{

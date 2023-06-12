@@ -21,6 +21,7 @@ export function ForYouVideos() {
                 try {
                     const response = await videoController.get_all_videos(accessToken);
                     setVideos(response);
+                    // console.log("response: ", response);
                 } catch (error) {
                     console.error(error);
                 }

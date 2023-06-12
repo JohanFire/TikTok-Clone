@@ -61,7 +61,7 @@ export function VideoFeed(props) {
                     />
                     <Share 
                         idVideo={item.id}
-                        shareCounter={item.share_counter}
+                        shared_counter={item.shared_counter}
                         idTargetUser={user.id}
                     />
                 </View>
