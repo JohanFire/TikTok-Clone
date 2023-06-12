@@ -10,3 +10,8 @@ class VideoSerializer(ModelSerializer):
         model = Video
         fields = ['id', 'description', 'video', 'image', 'user', 'user_data',
                     'created_at', "shared_counter", "likes_counter"]    
+
+class VideoActionsSerializer(ModelSerializer):
+    class Meta:
+        model = Video
+        fields = ['shared_counter', 'likes_counter']
