@@ -49,8 +49,8 @@ export function VideoFeed(props) {
                     <Profile idUser={item.user} image={user.avatar} />
                     <Likes 
                         idVideo={item.id}
-                        // likesCounter={item.likes_counter}
-                        likesCounter={300}
+                        likesCounter={item.likes_counter}
+                        // likesCounter={3200000}
                         idTargetUser={user.id}
                     />
                     <Text>COMMENTS</Text>

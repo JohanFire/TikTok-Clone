@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, Icon } from 'react-native-elements'
 
+import { nFormatter } from "../../../../utils";
+
 export function Likes(props) {
     const { idVideo, likesCounter, idTargetUser } = props;
     const [isLike, setIsLike] = useState(false);
@@ -15,7 +17,7 @@ export function Likes(props) {
                 onPress={() => console.log("LIKE !")}
                 iconStyle={isLike ? styles.likeOK : styles.like}
             />
-            <Text>{likesCounter}</Text>
+            <Text>{nFormatter(likesCounter)}</Text>
         </View>
     )
 }
