@@ -34,6 +34,7 @@ export function Likes(props) {
             await video.update_likes(accessToken, idVideo, newLikes)
 
             setLikes(newLikes);
+            setIsLike(true)
         } catch (error) {
             console.error(error);
         }
@@ -41,6 +42,7 @@ export function Likes(props) {
 
     const delete_like = () =>  {
         console.log('Delete like');
+        setIsLike(false)
     };
 
     return (
