@@ -8,5 +8,5 @@ router_video.register(prefix="video", basename="video",
                         viewset=VideoApiViewSet)
 router_video.register(prefix="video/actions", basename="video",
                         viewset=VideoActionsAPIViewSet)
-router_video.register(prefix="video/like", basename='video',
+router_video.register(prefix="video_like", basename='video',
                         viewset=VideoLikeApiViewSet)

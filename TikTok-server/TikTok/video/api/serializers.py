@@ -17,7 +17,7 @@ class VideoActionsSerializer(ModelSerializer):
         fields = ['shared_counter', 'likes_counter']
 
 class VideoLikeSerializer(ModelSerializer):
-    video_data = VideoSerializer(source='video', read_only = True)
+    video_data = VideoSerializer(source='video', read_only=True)
 
     class Meta:
         model = VideoLike
