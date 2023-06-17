@@ -30,6 +30,7 @@ export function Likes(props) {
     const add_like = async () => {
         try {
             const newLikes = likes + 1
+
             await video.create_like(accessToken, idVideo, idUser)
             await video.update_likes(accessToken, idVideo, newLikes)
 
@@ -40,9 +41,19 @@ export function Likes(props) {
         }
     }
 
-    const delete_like = () =>  {
-        console.log('Delete like');
-        setIsLike(false)
+    const delete_like = async () =>  {
+        try {
+            const newLikes = likes - 1
+
+            const video_like = await video.get_like(accessToken, idVideo, idUser);
+            await video.delete_like(accessToken, video_like.id);
+            await video.update_likes(accessToken, idVideo, newLikes)
+
+            setLikes(newLikes);
+            setIsLike(false)
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

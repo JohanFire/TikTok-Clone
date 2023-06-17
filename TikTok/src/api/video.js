@@ -141,4 +141,37 @@ export class Video {
         
         return result
     }
+
+    async get_like(token, idVideo, idUser){
+        const filter = `user=${idUser}&video=${idVideo}`;
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO_LIKE}/?${filter}`
+        const params = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if(response.status !== 200) throw result;
+        
+        return result[0];
+    }
+
+    async delete_like(token, idLike){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO_LIKE}/${idLike}/`;
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(url, params);
+
+        if(response.status !== 204) throw "Error..."
+
+        return true;
+    }
 }
