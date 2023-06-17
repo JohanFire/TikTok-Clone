@@ -103,4 +103,23 @@ export class Video {
         if (result.length > 0 ) return true;
         return false;
     }
+
+    async create_like(token, idVideo, idUser){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO_LIKE}/`
+        const params = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({user: idUser, video: idVideo})
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if (response.status !== 201) throw result
+
+        return result;
+    }
 }

@@ -26,6 +26,17 @@ export function Likes(props) {
         })()
     }, [idVideo, idUser]);
 
+    const add_like = async () => {
+        try {
+            await video.create_like(accessToken, idVideo, idUser)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const delete_like = () =>  {
+        console.log('Delete like');
+    };
 
     return (
         <View style={styles.content} >
@@ -33,7 +44,7 @@ export function Likes(props) {
                 type='material-community'
                 name="heart"
                 size={40}
-                onPress={() => console.log("LIKE !")}
+                onPress={isLike ? delete_like : add_like}
                 iconStyle={isLike ? styles.likeOK : styles.like}
             />
             <Text>{nFormatter(likesCounter)}</Text>
