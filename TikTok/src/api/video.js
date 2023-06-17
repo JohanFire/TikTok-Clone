@@ -85,4 +85,22 @@ export class Video {
         return result
     }
 
+    async is_like(token, idVideo, idUser){
+        const filter = `user=${idUser}&video=${idVideo}`;
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO_LIKE}/?${filter}`;
+        const params = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if (response.status !== 200) throw result;
+
+        if (result.length > 0 ) return true;
+        return false;
+    }
 }
