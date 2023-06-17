@@ -11,6 +11,7 @@ const video = new Video();
 export function Likes(props) {
     const { idVideo, likesCounter, idTargetUser } = props;
     const [isLike, setIsLike] = useState(false);
+    const [likes, setLikes] = useState(likesCounter)
     const { accessToken, auth } = useAuth();
     const idUser = auth.user_id;
 
@@ -28,7 +29,11 @@ export function Likes(props) {
 
     const add_like = async () => {
         try {
+            const newLikes = likes + 1
             await video.create_like(accessToken, idVideo, idUser)
+            await video.update_likes(accessToken, idVideo, newLikes)
+
+            setLikes(newLikes);
         } catch (error) {
             console.error(error);
         }
@@ -47,7 +52,7 @@ export function Likes(props) {
                 onPress={isLike ? delete_like : add_like}
                 iconStyle={isLike ? styles.likeOK : styles.like}
             />
-            <Text>{nFormatter(likesCounter)}</Text>
+            <Text>{nFormatter(likes)}</Text>
         </View>
     )
 }
