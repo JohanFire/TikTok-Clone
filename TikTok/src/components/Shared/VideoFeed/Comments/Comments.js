@@ -5,6 +5,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 
 import { nFormatter } from "../../../../utils";
 import { useTheme } from "../../../../hooks";
+import { Header } from "./Header";
 
 const { height } = Dimensions.get("screen");
 
@@ -38,7 +39,7 @@ export function Comments(props) {
                     container: styles.rb_sheet_container,
                 }}
             >
-                <Text>Caja de comentarios</Text>
+                <Header onClose={close_sheet} />
             </RBSheet>
         </>
     )
