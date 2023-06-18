@@ -406,3 +406,27 @@ MakeMigrations of new user created:
     # then regenerate db with new migration
     python manage.py migrate
 ```
+
+---
+
+
+# Likes system
+## VideoLike model
+```bash
+...
+class VideoLike(models.Model):
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    video = models.ForeignKey('video.Video', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+...
+```
+Add this new class to [settings.py](./TikTok-server/TikTok/video/models.py)
+
+## Migrations
+MakeMigrations of new user created:
+```bash
+    # generate migrations with new app
+    python manage.py makemigrations
+    # then regenerate db with new migration
+    python manage.py migrate
+```
