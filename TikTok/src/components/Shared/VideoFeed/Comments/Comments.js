@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { StyleSheet, View, Dimensions } from 'react-native'
+import { StyleSheet, View, Dimensions, FlatList } from 'react-native'
 import { Text, Icon } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { size } from "lodash";
@@ -18,7 +18,7 @@ export function Comments(props) {
     const sheet = useRef();
     const styles = styled();
     const {accessToken} = useAuth();
-    const [Comments, setComments] = useState(null)
+    const [comments, setComments] = useState(null)
 
     const open_sheet = () => sheet.current.open();
     const close_sheet = () => sheet.current.close();
@@ -60,7 +60,20 @@ export function Comments(props) {
             >
                 <Header 
                 onClose={close_sheet} 
-                commentCounter={size(Comments)}
+                commentCounter={size(comments)}
+                />
+                <FlatList 
+                    data={comments}
+                    renderItem={({item}) => (
+                        <Text key={item.id}>Comentario...</Text>
+                    )}
+                    keyExtractor={(item) => item.id}
+                    style={styles.comments__list}
+                    ListEmptyComponent={
+                        <Text
+                            style={styles.no__comment__text}
+                        >Sé el primero en comentar</Text>
+                    }
                 />
             </RBSheet>
         </>
@@ -79,7 +92,15 @@ const styled = () => {
                 borderTopLeftRadius: 10,
                 borderTopRightRadius: 10,
                 backgroundColor: theme.Default.background,
-            }
+            },
+            comments__list: {
+                marginBottom: 80,
+            },
+            no__comment__text: {
+                textAlign: 'center',
+                marginTop: 20,
+                opacity: 0.6,
+            },
         })
     )
 }
