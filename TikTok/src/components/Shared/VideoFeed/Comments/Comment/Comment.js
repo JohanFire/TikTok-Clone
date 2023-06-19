@@ -10,7 +10,7 @@ import { Comment as CommentController } from "../../../../../api";
 const commentController = new CommentController();
 
 export function Comment(props) {
-    const { comment } = props;
+    const { comment, onReloadComments } = props;
     const user = comment.user_data
     const { accessToken, auth } = useAuth();
 
@@ -52,6 +52,7 @@ export function Comment(props) {
     const delete_comment = async () => {
         try {
                 await commentController.delete(accessToken, comment.id);
+                onReloadComments();
         } catch (error) {
             console.error(error);
         }

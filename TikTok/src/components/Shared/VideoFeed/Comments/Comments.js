@@ -20,6 +20,7 @@ export function Comments(props) {
     const styles = styled();
     const {accessToken} = useAuth();
     const [comments, setComments] = useState(null)
+    const [reloadComment, setReloadComment] = useState(true);
 
     const totalComments = size(comments)
 
@@ -36,7 +37,9 @@ export function Comments(props) {
                 console.error(error)
             }
         })()
-    }, [])
+    }, [reloadComment])
+
+    const on_reload_comments = () => setReloadComment((prevState) => !prevState);
 
     return (
         <>
@@ -69,6 +72,7 @@ export function Comments(props) {
                     renderItem={({item}) => (
                         <Comment 
                             comment={item}
+                            onReloadComments={on_reload_comments}
                         />
                     )}
                     keyExtractor={(item) => item.id}
