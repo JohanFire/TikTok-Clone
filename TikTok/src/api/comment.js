@@ -17,4 +17,20 @@ export class Comment{
 
         return result;
     }
+
+    async delete(token, idComment){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.COMMENT}/${idComment}/`
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        };
+        
+        const response = await fetch(url, params);
+
+        if(response.status !== 204) throw "Error..."
+
+        return true;
+    }
 }

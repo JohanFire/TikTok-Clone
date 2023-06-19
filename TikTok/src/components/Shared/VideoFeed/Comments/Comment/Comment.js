@@ -4,13 +4,57 @@ import { Text, Avatar } from 'react-native-elements'
 import { DateTime } from "luxon";
 
 import { DEFAULT_USER_AVATAR_2 } from "../../../../../../assets/images";
+import { useAuth } from "../../../../../hooks";
+import { Comment as CommentController } from "../../../../../api";
+
+const commentController = new CommentController();
 
 export function Comment(props) {
     const { comment } = props;
     const user = comment.user_data
+    const { accessToken, auth } = useAuth();
 
     const confirm_delete_comment = () => {
-        console.log("Eliminar comentario");
+        if (user.id === auth.user_id) {
+            Alert.alert(
+                "Eliminar comentario",
+                "¿Estás seguro de querer eliminar el comentario?",
+                [
+                    {
+                        text: "Cancelar",
+                        style: "cancel",
+                    },
+                    {
+                        text: "Eliminar",
+                        onPress: delete_comment,
+                    }
+
+                ]
+            );
+        } else{
+            Alert.alert(
+                "Denunciar comentario",
+                "",
+                [
+                    {
+                        text: "Salir",
+                        style: "cancel",
+                    },
+                    {
+                        text: "Denunciar",
+                    }
+
+                ]
+            )
+        }
+    }
+
+    const delete_comment = async () => {
+        try {
+                await commentController.delete(accessToken, comment.id);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
