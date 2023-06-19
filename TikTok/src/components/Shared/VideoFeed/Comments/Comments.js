@@ -7,11 +7,12 @@ import { size } from "lodash";
 import { nFormatter } from "../../../../utils";
 import { useTheme, useAuth } from "../../../../hooks";
 import { Header } from "./Header";
-import { Comment } from "../../../../api";
+import { Comment as CommentController } from "../../../../api";
+import { Comment } from "./Comment";
 
 const { height } = Dimensions.get("screen");
 
-const commentController = new Comment();
+const commentController = new CommentController();
 
 export function Comments(props) {
     const { idUser, idVideo } = props;
@@ -29,7 +30,7 @@ export function Comments(props) {
         (async () => {
             try {
                 const response = await commentController.getCommentsVideo(accessToken, idVideo)
-                console.log(response);
+                // console.log(response);
                 setComments(response);
             } catch (error) {
                 console.error(error)
@@ -66,7 +67,9 @@ export function Comments(props) {
                 <FlatList 
                     data={comments}
                     renderItem={({item}) => (
-                        <Text key={item.id}>Comentario...</Text>
+                        <Comment 
+                            comment={item}
+                        />
                     )}
                     keyExtractor={(item) => item.id}
                     style={styles.comments__list}
