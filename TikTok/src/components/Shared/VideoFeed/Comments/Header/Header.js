@@ -2,10 +2,8 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Text, Icon } from 'react-native-elements'
 
-const commentCounter = 0;
-
 export function Header(props) {
-    const {onClose} = props;
+    const {onClose, commentCounter} = props;
 
     const get_text_comment = () => {
         if (commentCounter === 1) return "comentario";
