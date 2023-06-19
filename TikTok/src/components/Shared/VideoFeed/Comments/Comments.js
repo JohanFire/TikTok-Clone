@@ -20,6 +20,8 @@ export function Comments(props) {
     const {accessToken} = useAuth();
     const [comments, setComments] = useState(null)
 
+    const totalComments = size(comments)
+
     const open_sheet = () => sheet.current.open();
     const close_sheet = () => sheet.current.close();
 
@@ -35,7 +37,6 @@ export function Comments(props) {
         })()
     }, [])
 
-
     return (
         <>
             <View style={styles.content} >
@@ -46,7 +47,7 @@ export function Comments(props) {
                     onPress={open_sheet}
                 />
 
-                <Text>{nFormatter(99)}</Text>
+                <Text>{nFormatter(totalComments)}</Text>
             </View>
 
             <RBSheet
@@ -60,7 +61,7 @@ export function Comments(props) {
             >
                 <Header 
                 onClose={close_sheet} 
-                commentCounter={size(comments)}
+                commentCounter={totalComments}
                 />
                 <FlatList 
                     data={comments}
