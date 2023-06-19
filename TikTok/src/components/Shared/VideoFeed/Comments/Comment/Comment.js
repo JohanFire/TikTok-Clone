@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { Text, Avatar } from 'react-native-elements'
+import { DateTime } from "luxon";
+
 import { DEFAULT_USER_AVATAR_2 } from "../../../../../../assets/images";
 
 export function Comment(props) {
@@ -26,7 +28,13 @@ export function Comment(props) {
             >
                 <Text style={styles.username}>{user.username}</Text>
                 <Text style={styles.comment}>{comment.text}</Text>
-                <Text style={styles.date}>{comment.created_at}</Text>
+                <Text style={styles.date}>
+                    {
+                        DateTime.fromISO(comment.created_at)
+                            .setLocale("es")
+                            .toFormat("dd-MM-yy")
+                    }
+                </Text>
             </View>
         </TouchableOpacity>
     )
@@ -44,7 +52,7 @@ const styles = StyleSheet.create({
         fontSize: 11,
         opacity: 0.6,
     },
-    comment:{
+    comment: {
         fontSize: 13,
         paddingVertical: 3,
         paddingRight: 20,
