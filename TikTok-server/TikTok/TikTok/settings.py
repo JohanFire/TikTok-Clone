@@ -40,6 +40,7 @@ ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 INSTALLED_APPS = [
     "users",
     "video",
+    "comment",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
