@@ -5,6 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { User as UserController } from "../../api";
 import { useAuth } from "../../hooks";
+import { Account } from "../../components/Account";
 
 const userController = new UserController();
 
@@ -34,7 +35,7 @@ export function AccountScreen(props) {
 
     return (
         <ScrollView>
-            <Text>Header</Text>
+            <Account.Header avatar={user.avatar} username={user.username} />
             <Text>Follows</Text>
             <Text>Settings</Text>
             <Text>User Info</Text>
