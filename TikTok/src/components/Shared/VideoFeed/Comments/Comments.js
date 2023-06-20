@@ -9,6 +9,7 @@ import { useTheme, useAuth } from "../../../../hooks";
 import { Header } from "./Header";
 import { Comment as CommentController } from "../../../../api";
 import { Comment } from "./Comment";
+import { CommentForm } from "./CommentForm";
 
 const { height } = Dimensions.get("screen");
 
@@ -82,6 +83,12 @@ export function Comments(props) {
                             style={styles.no__comment__text}
                         >Sé el primero en comentar</Text>
                     }
+                />
+
+                <CommentForm 
+                    idTargetUser={idUser}
+                    idVideo={idVideo}
+                    onReloadComments={on_reload_comments}
                 />
             </RBSheet>
         </>
