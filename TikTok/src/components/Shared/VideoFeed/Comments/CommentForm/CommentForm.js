@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Platform, Keyboard } from 'react-native'
 import { Input } from 'react-native-elements'
 
 import { useTheme } from "../../../../../hooks";
+import { set } from 'lodash';
 
 export function CommentForm(props) {
     const { idTargetUser, idVideo, onReloadComments } = props;
     const styles = styled();
+    const [keyboardHeight, setKeyboardHeight] = useState(0)
+
+    useEffect(() => {
+        const showSubscription = Keyboard.addListener("keyboardDidShow", (e) => {
+            setKeyboardHeight(
+                Platform.OS === "ios" ? e.endCoordinates.height - 20 : 150
+            )
+        });
+
+        const hiddenSubscription = Keyboard.addListener("keyboardDidHide", (e) => {
+            setKeyboardHeight(0)
+        })
+
+        return () => {
+            showSubscription.remove()
+            hiddenSubscription.remove()
+        }
+    }, [])
+
 
     return (
         <View
-            style={styles.content}
+            style={[styles.content, { bottom: keyboardHeight }]}
         >
-            <Input 
+            <Input
                 placeholder='Añadir Comentario...'
                 inputContainerStyle={styles.input__container}
                 inputStyle={styles.input__style}
