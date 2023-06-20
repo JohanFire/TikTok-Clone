@@ -33,4 +33,27 @@ export class Comment{
 
         return true;
     }
+
+    async create(token, comment, idUser, idVideo){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.COMMENT}/`
+        const params = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                text: comment,
+                user: idUser,
+                video: idVideo,
+            }),
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if(response.status !== 201) throw result;
+
+        return result;
+    }
 }

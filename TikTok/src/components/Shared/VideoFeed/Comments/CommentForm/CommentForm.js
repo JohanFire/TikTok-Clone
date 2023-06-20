@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Platform, Keyboard } from 'react-native'
 import { Input } from 'react-native-elements'
+import { size } from "lodash";
 
-import { useTheme } from "../../../../../hooks";
-import { set } from 'lodash';
+import { useTheme, useAuth } from "../../../../../hooks";
+import { Comment as CommentController } from "../../../../../api";
+
+const commentController = new CommentController();
 
 export function CommentForm(props) {
     const { idTargetUser, idVideo, onReloadComments } = props;
     const styles = styled();
     const [keyboardHeight, setKeyboardHeight] = useState(0)
+    const [comment, setComment] = useState("");
+    const { accessToken, auth } = useAuth();
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener("keyboardDidShow", (e) => {
@@ -27,6 +32,17 @@ export function CommentForm(props) {
         }
     }, [])
 
+    const send_comment = async () => {
+        if (size(comment) > 0) {
+            try {
+                await commentController.create(accessToken, comment, auth.user_id, idVideo)
+                setComment("");
+                onReloadComments();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
 
     return (
         <View
@@ -36,7 +52,9 @@ export function CommentForm(props) {
                 placeholder='Añadir Comentario...'
                 inputContainerStyle={styles.input__container}
                 inputStyle={styles.input__style}
-                onChangeText={text => console.log(text)}
+                onChangeText={setComment}
+                value={comment}
+                onSubmitEditing={send_comment}
             />
         </View>
     )
