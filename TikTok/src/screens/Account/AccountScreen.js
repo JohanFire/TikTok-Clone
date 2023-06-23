@@ -36,7 +36,8 @@ export function AccountScreen(props) {
     return (
         <ScrollView>
             <Account.Header avatar={user.avatar} username={user.username} />
-            <Text>Follows</Text>
+            <Account.Follows idUser={user.id} />
+            
             <Text>Settings</Text>
             <Text>User Info</Text>
 
