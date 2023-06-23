@@ -64,7 +64,7 @@ export function AccountScreen(props) {
                     <Account.Videos idUser={user.id} />
                 </TabView.Item>
                 <TabView.Item>
-                    <Text>Videos Favoritos</Text>
+                    <Account.VideosFavorites idUser={user.id} />
                 </TabView.Item>
             </TabView>
 
