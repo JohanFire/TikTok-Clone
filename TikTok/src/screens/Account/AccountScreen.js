@@ -61,7 +61,7 @@ export function AccountScreen(props) {
                 animationType='spring'
             >
                 <TabView.Item>
-                    <Text>Videos subidos</Text>
+                    <Account.Videos idUser={user.id} />
                 </TabView.Item>
                 <TabView.Item>
                     <Text>Videos Favoritos</Text>

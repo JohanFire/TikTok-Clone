@@ -174,4 +174,21 @@ export class Video {
 
         return true;
     }
+
+    async get_user_videos(token, idUser){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.VIDEO}/?user=${idUser}`;
+        const params = {
+            headers:{
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+            },
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json()
+
+        if(response.status !== 200) throw result;
+
+        return result;
+    }
 }
