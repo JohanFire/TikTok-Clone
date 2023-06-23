@@ -6,7 +6,7 @@ import { screen } from "../../../utils";
 
 export function Settings(props) {
     const { instagram } = props;
-    console.log(props);
+    // console.log(props);
     const navigation = useNavigation();
 
     const open_settings = () => {

@@ -38,8 +38,7 @@ export function AccountScreen(props) {
             <Account.Header avatar={user.avatar} username={user.username} />
             <Account.Follows idUser={user.id} />
             <Account.Settings instagram={user.instagram} />
-
-            <Text>User Info</Text>
+            <Account.Info description={user.description} website={user.website} />
 
             <Tab
                 value={tabActive}
