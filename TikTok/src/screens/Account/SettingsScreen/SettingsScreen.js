@@ -5,6 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { User } from "../../../api";
 import { useAuth, useTheme } from "../../../hooks";
+import { UpdateAvatar } from "../../../components/Settings";
 
 const userController = new User();
 
@@ -45,6 +46,10 @@ export function SettingsScreen(props) {
 
     return (
         <ScrollView>
+            <UpdateAvatar 
+                avatar={user.avatar}
+            />
+
             <Button 
                 title="Cerrar Sesión"
                 containerStyle={styles.btn__container__logout}
