@@ -46,4 +46,23 @@ export class User{
         if(response.status !== 200 )throw result;
         return result;
     }
+
+    async update_user(token, data){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER_ME}/`;
+        const params = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if(response.status !== 200) throw result;
+
+        return result;
+    }
 }
