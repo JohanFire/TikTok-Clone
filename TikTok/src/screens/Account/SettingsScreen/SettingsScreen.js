@@ -5,7 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { User } from "../../../api";
 import { useAuth, useTheme } from "../../../hooks";
-import { UpdateAvatar } from "../../../components/Settings";
+import { UpdateAvatar, UpdateData } from "../../../components/Settings";
 
 const userController = new User();
 
@@ -52,6 +52,16 @@ export function SettingsScreen(props) {
             <UpdateAvatar 
                 avatar={user.avatar}
                 on_reload_user={on_reload_user}
+            />
+
+            <UpdateData 
+                name={user.first_name}
+                last_name={user.last_name}
+                username={user.username}
+                description={user.description}
+                email={user.email}
+                website={user.website}
+                instagram={user.instagram}
             />
 
             <Button 
