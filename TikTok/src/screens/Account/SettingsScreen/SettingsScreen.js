@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useLayoutEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text } from 'react-native-elements'
+import { Text, Icon } from 'react-native-elements'
 import { useFocusEffect } from "@react-navigation/native";
 
 import { User } from "../../../api";
@@ -8,8 +8,10 @@ import { useAuth, useTheme } from "../../../hooks";
 
 const userController = new User();
 
-export function SettingsScreen() {
+export function SettingsScreen(props) {
+    const { navigation } = props;
     const [user, setUser] = useState(null)
+    const { toggleTheme, darkMode } = useTheme();
     const { accessToken } = useAuth();
 
     useFocusEffect(
@@ -25,6 +27,19 @@ export function SettingsScreen() {
         }, [],)
     )
 
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <Icon
+                    type='material-community'
+                    name={darkMode ? "weather-sunny" : "weather-night"}
+                    size={24}
+                    onPress={toggleTheme}
+                />
+            ),
+        });
+    }, [darkMode]);
+
     if (!user) return null
 
     return (
@@ -35,9 +50,9 @@ export function SettingsScreen() {
 }
 
 const styles = () => {
-    const {} = useTheme();
+    const { } = useTheme();
 
     return StyleSheet.create({
-        
+
     })
 }
