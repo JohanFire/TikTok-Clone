@@ -34,8 +34,6 @@ export function ChangeNameScreen(props) {
     return (
         <View style={{ marginHorizontal: 20 }}>
             <Input
-                // value={""}
-                // onChange={() => { }}
                 placeholder='Nombre'
                 autoCapitalize='words'
                 value={formik.values.name}
