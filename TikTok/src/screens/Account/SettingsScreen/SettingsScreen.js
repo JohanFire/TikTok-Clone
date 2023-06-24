@@ -12,6 +12,7 @@ const userController = new User();
 export function SettingsScreen(props) {
     const { navigation } = props;
     const [user, setUser] = useState(null)
+    const [reload, setReload] = useState(false);
     const styles = styled();
     const { toggleTheme, darkMode } = useTheme();
     const { accessToken, logout } = useAuth();
@@ -26,7 +27,7 @@ export function SettingsScreen(props) {
                     console.error(error);
                 }
             })()
-        }, [],)
+        }, [reload],)
     )
 
     useLayoutEffect(() => {
@@ -42,12 +43,15 @@ export function SettingsScreen(props) {
         });
     }, [darkMode]);
 
+    const on_reload_user = () => setReload(prevState => !prevState)
+
     if (!user) return null
 
     return (
         <ScrollView>
             <UpdateAvatar 
                 avatar={user.avatar}
+                on_reload_user={on_reload_user}
             />
 
             <Button 
