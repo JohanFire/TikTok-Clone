@@ -33,7 +33,7 @@ export function VideosFavorites(props) {
                             accessToken,
                             idUser
                         )
-                        console.log("response", response);
+                        // console.log("response", response);
                         setVideos(response)
                     } catch (error) {
                         console.error(error);

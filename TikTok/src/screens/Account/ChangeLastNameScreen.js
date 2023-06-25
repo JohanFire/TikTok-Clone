@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Text, Input, Button } from 'react-native-elements'
+import { Text, Button, Input } from 'react-native-elements'
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -9,20 +9,21 @@ import { useAuth } from "../../hooks";
 
 const user = new User();
 
-export function ChangeNameScreen(props) {
+export function ChangeLastNameScreen(props) {
     const { route: { params }, navigation } = props;
+    // console.log(props);
     const { accessToken } = useAuth();
 
     const formik = useFormik({
-        initialValues: { name: params.name },
+        initialValues: { last_name: params.last_name },
         validationSchema: Yup.object({
-            name: Yup.string().required("El nombre es obligatorio"),
+            last_name: Yup.string().required("El campo es obligatorio"),
         }),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
                 await user.update_user(accessToken,
-                    { first_name: formValue.name }
+                    { last_name: formValue.last_name }
                 )
                 navigation.goBack()
             } catch (error) {
@@ -33,16 +34,16 @@ export function ChangeNameScreen(props) {
 
     return (
         <View style={{ marginHorizontal: 20 }}>
-            <Input
-                placeholder='Nombre'
+            <Input 
+                placeholder='Apellido'
                 autoCapitalize='words'
-                value={formik.values.name}
-                onChangeText={text => formik.setFieldValue("name", text)}
+                value={formik.values.last_name}
+                onChangeText={text => formik.setFieldValue("last_name", text)}
                 errorMessage={formik.errors.name}
             />
-            <Button
+            <Button 
                 title="Guardar"
-                style={{ marginTop: 10 }}
+                style={{marginTop: 10}}
                 onPress={formik.handleSubmit}
                 loading={formik.isSubmitting}
             />

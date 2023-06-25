@@ -33,7 +33,7 @@ export function Share(props) {
             const newTotal = counter + 1
             const response = await video.share_video(accessToken, idVideo, newTotal);
             setCounter(newTotal)
-            console.log(response);
+            // console.log(response);
         } catch (error) {
             console.error("ww", error);
         }
