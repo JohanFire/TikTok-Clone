@@ -14,7 +14,7 @@ export function Settings(props) {
     };
 
     const open_url = () => {
-        Linking.openURL(`${instagram}`)
+        Linking.openURL(`https://www.instagram.com/${instagram}/`);
     };
 
     return (
