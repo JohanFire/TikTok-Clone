@@ -22,7 +22,6 @@ export function ChangeLastNameScreen(props) {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                console.log("onSubmit try");
                 await user.update_user(accessToken,
                     { last_name: formValue.last_name }
                 )
