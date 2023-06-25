@@ -2,14 +2,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.filters import OrderingFilter
 from django.contrib.auth.hashers import make_password
+from rest_framework.viewsets import ModelViewSet
 
 from users.api.serializers import (
     UserRegisterSerializer,
     UserSerializer,
     UserUpdateSerializer
 )
-
+from users.models import User
 
 class RegisterView(APIView):
     def post(self, request):
@@ -40,3 +42,11 @@ class UserMeView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class UserApiViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    http_method_names = ['get']
+    filter_backends = [OrderingFilter]
+    ordering = ['-date_joined']
