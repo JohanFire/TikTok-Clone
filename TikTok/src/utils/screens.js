@@ -41,6 +41,7 @@ const account = {
     account: "AccountTab",
     settings: "SetttingsTab",
     changeName: "ChangeNameTab",
+    changeLastName: "ChangeLastNameTab",
     changeDescription: "ChangeDescriptionTab",
     changeWebsite: "ChangeWebsiteTab",
     changeInstagram: "ChangeInstagramTab",

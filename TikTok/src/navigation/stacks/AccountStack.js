@@ -4,6 +4,7 @@ import {
     AccountScreen,
     SettingsScreen,
     ChangeNameScreen,
+    ChangeLastNameScreen,
     ChangeDescriptionScreen,
     ChangeWebsiteScreen,
     ChangeInstagramScreen
@@ -32,6 +33,11 @@ export function AccountStack() {
                     name={screen.account.changeName}
                     component={ChangeNameScreen}
                     options={{ title: "Nombre" }}
+                />
+                <Stack.Screen
+                    name={screen.account.changeLastName}
+                    component={ChangeLastNameScreen}
+                    options={{ title: "Apellido" }}
                 />
                 <Stack.Screen
                     name={screen.account.changeDescription}

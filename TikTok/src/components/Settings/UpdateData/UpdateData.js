@@ -14,19 +14,19 @@ export function UpdateData(props) {
     }
 
     const go_to_change_last_name = () => {
-        navigation.navigate(screen.account.changeName, { last_name })
+        navigation.navigate(screen.account.changeLastName, { last_name })
     }
 
     const go_to_change_description = () => {
-        navigation.navigate(screen.account.changeName, { description })
+        navigation.navigate(screen.account.changeDescription, { description })
     }
 
     const go_to_change_website = () => {
-        navigation.navigate(screen.account.changeName, { website })
+        navigation.navigate(screen.account.changeWebsite, { website })
     }
 
     const go_to_change_instagram = () => {
-        navigation.navigate(screen.account.changeName, { instagram })
+        navigation.navigate(screen.account.changeInstagram, { instagram })
     }
 
     return (
