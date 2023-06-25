@@ -12,6 +12,7 @@ export function UserScreen(props) {
     const { route: { params }, navigation } = props;
     const idUser = params.idUser
     const [user, setUser] = useState(null);
+    const [tabActive, setTabActive] = useState(0)
     const { accessToken } = useAuth();
 
     useEffect(() => {
@@ -38,7 +39,7 @@ export function UserScreen(props) {
             <Account.Follows
                 idUser={user.id}
             />
-            <Account.Social 
+            <Account.Social
                 idUser={user.id}
                 instagram={user.instagram}
             />
@@ -46,6 +47,34 @@ export function UserScreen(props) {
                 description={user.description}
                 website={user.website}
             />
+
+            <Tab
+                value={tabActive}
+                onChange={(e) => setTabActive(e)}
+                indicatorStyle={{backgroundColor: "#fff"}}
+            >
+                <Tab.Item 
+                    icon={{type: "material-community", name: "grid"}}
+                    containerStyle={{backgroundColor: "transparent"}}
+                />
+                <Tab.Item 
+                    icon={{type: "material-community", name: "heart"}}
+                    containerStyle={{backgroundColor: "transparent"}}
+                />
+            </Tab>
+
+            <TabView 
+                value={tabActive}
+                onChange={setTabActive}
+                animationType="spring"
+            >
+                <TabView.Item>
+                    <Account.Videos idUser={user.id} />
+                </TabView.Item>
+                <TabView.Item>
+                <Account.VideosFavorites idUser={user.id} />
+                </TabView.Item>
+            </TabView>
         </ScrollView>
     )
 }
