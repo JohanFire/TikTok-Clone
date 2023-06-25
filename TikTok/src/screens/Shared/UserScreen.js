@@ -51,19 +51,19 @@ export function UserScreen(props) {
             <Tab
                 value={tabActive}
                 onChange={(e) => setTabActive(e)}
-                indicatorStyle={{backgroundColor: "#fff"}}
+                indicatorStyle={{ backgroundColor: "#fff" }}
             >
-                <Tab.Item 
-                    icon={{type: "material-community", name: "grid"}}
-                    containerStyle={{backgroundColor: "transparent"}}
+                <Tab.Item
+                    icon={{ type: "material-community", name: "grid" }}
+                    containerStyle={{ backgroundColor: "transparent" }}
                 />
-                <Tab.Item 
-                    icon={{type: "material-community", name: "heart"}}
-                    containerStyle={{backgroundColor: "transparent"}}
+                <Tab.Item
+                    icon={{ type: "material-community", name: "heart" }}
+                    containerStyle={{ backgroundColor: "transparent" }}
                 />
             </Tab>
 
-            <TabView 
+            <TabView
                 value={tabActive}
                 onChange={setTabActive}
                 animationType="spring"
@@ -72,7 +72,7 @@ export function UserScreen(props) {
                     <Account.Videos idUser={user.id} />
                 </TabView.Item>
                 <TabView.Item>
-                <Account.VideosFavorites idUser={user.id} />
+                    <Account.VideosFavorites idUser={user.id} />
                 </TabView.Item>
             </TabView>
         </ScrollView>
