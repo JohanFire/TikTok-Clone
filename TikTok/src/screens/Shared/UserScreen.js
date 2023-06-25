@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { ScrollView } from 'react-native'
-import { Text, Tab, TabView } from 'react-native-elements'
+import { Tab, TabView } from 'react-native-elements'
 
 import { User } from "../../api";
 import { useAuth } from "../../hooks";
+import { Account } from "../../components/Account";
 
 const userController = new User();
 
@@ -26,10 +27,14 @@ export function UserScreen(props) {
         })();
     }, [idUser])
     
+    if(!user) return null
 
     return (
         <ScrollView>
-            <Text>UserScreen</Text>
+            <Account.Header 
+                avatar={user.avatar}
+                username={user.username}
+            />
         </ScrollView>
     )
 }
