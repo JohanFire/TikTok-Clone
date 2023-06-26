@@ -25,3 +25,14 @@ class FollowingCountView(APIView):
         count = Follow.objects.filter(user=id_user).count()
         
         return Response({'count': count})
+
+class FollowersCountView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        id_user = kwargs['id_user']
+
+        # db query to count how many users follow id_user
+        count = Follow.objects.filter(user_followed=id_user).count()
+        
+        return Response({'count': count})
