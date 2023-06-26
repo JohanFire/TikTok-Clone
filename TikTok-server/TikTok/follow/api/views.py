@@ -15,7 +15,7 @@ class FollowApiViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user', 'user_followed']
 
-class FollowedsCountView(APIView):
+class FollowingCountView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
