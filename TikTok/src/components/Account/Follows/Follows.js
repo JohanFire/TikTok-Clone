@@ -11,9 +11,10 @@ const follow = new Follow();
 
 export function Follows(props) {
     const { idUser } = props;
-    const [followingCount, setFollowingCount] = useState(0)
-    const navigation = useNavigation();
     const { accessToken } = useAuth();
+    const [followingCount, setFollowingCount] = useState(0)
+    const [followersCount, setFollowersCount] = useState(0)
+    const navigation = useNavigation();
 
     useEffect(() => {
         (async () => {
@@ -26,6 +27,16 @@ export function Follows(props) {
         })()
     }, [])
     
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await follow.get_followers_count(accessToken, idUser);
+                setFollowersCount(response);
+            } catch (error) {
+                console.error(error);
+            }
+        })()
+    }, [])
 
     const open_followeds = () => {
         navigation.navigate(screen.app.followeds, { idUser })
@@ -42,7 +53,7 @@ export function Follows(props) {
                 <Text style={styles.title}>Siguiendo</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={open_followers}>
-                <Text style={styles.count}>416</Text>
+                <Text style={styles.count}>{followersCount}</Text>
                 <Text style={styles.title}>Seguidores</Text>
             </Pressable>
         </View>

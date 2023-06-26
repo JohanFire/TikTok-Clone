@@ -15,6 +15,7 @@ export const ENV = {
         USER_ME: "user/me",
         USERS: "users",
         FOLLOWING_COUNT: "follow/following/count",
+        FOLLOWERS_COUNT: "follow/followers/count",
     },
 
     JWT:{
