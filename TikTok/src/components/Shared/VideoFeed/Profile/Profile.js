@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Avatar, Icon } from 'react-native-elements'
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -9,13 +9,33 @@ import {
 } from "../../../../../assets/images";
 import { useAuth } from "../../../../hooks";
 import { screen } from "../../../../utils";
+import { Follow } from "../../../../api";
+
+const followController = new Follow();
 
 export function Profile(props) {
     const { idUser, image } = props;
-    const { auth } = useAuth();
+    const { auth, accessToken } = useAuth();
     const navigation = useNavigation();
     const { name } = useRoute();
     const isMyVideo = idUser === auth.user_id;
+    const [isFollowing, setIsFollowing] = useState(true)
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await followController.is_following(
+                    accessToken,
+                    auth.user_id,
+                    idUser
+                )
+                setIsFollowing(response)
+            } catch (error) {
+                console.error(error);
+            }
+        })()
+    }, [])
+
 
     const go_to_profile = () => {
         if (isMyVideo && name === screen.home.home) {
@@ -23,7 +43,7 @@ export function Profile(props) {
                 screen: screen.account.account
             });
         } else {
-            navigation.navigate(screen.app.user, {idUser})
+            navigation.navigate(screen.app.user, { idUser })
         }
     };
 
@@ -40,13 +60,15 @@ export function Profile(props) {
                 avatarStyle={styles.avatar}
                 onPress={go_to_profile}
             />
-            <Icon
-                type='material-community'
-                name='plus'
-                size={14}
-                containerStyle={styles.icon__container}
-                onPress={follow}
-            />
+            {!isMyVideo && !isFollowing && (
+                <Icon
+                    type='material-community'
+                    name='plus'
+                    size={14}
+                    containerStyle={styles.icon__container}
+                    onPress={follow}
+                />
+            )}
         </View>
     )
 }
