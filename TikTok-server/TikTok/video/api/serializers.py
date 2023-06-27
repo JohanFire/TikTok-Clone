@@ -22,3 +22,8 @@ class VideoLikeSerializer(ModelSerializer):
     class Meta:
         model = VideoLike
         fields = ['id', 'user', 'video', 'video_data','created_at']
+
+class VideoNotificationSerializer(ModelSerializer):
+    class Meta:
+        model = Video
+        fields = ['id', 'image']
