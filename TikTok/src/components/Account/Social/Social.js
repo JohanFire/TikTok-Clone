@@ -1,10 +1,56 @@
-import React, { useState, } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Linking } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 
+import { Follow } from "../../../api";
+import { useAuth } from "../../../hooks";
+
+const followController = new Follow();
+
 export function Social(props) {
-    const { instagram } = props;
+    const { idUser, instagram } = props;
+    const { accessToken, auth } = useAuth();
     const [isFollowing, setIsFollowing] = useState(undefined)
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await followController.is_following(
+                    accessToken,
+                    auth.user_id,
+                    idUser,
+                    )
+                setIsFollowing(response)
+            } catch (error) {
+                console.error(error);
+            }
+        })()
+    }, [])
+
+    const follow = async () => {
+        try {
+            await followController.follow(accessToken, auth.user_id, idUser);
+            setIsFollowing(true)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const unfollow = async () => {
+        try {
+            const response = await followController.get_following_id(
+                accessToken, 
+                auth.user_id,
+                idUser,
+                )
+            const idFollow = response.id;
+
+            await followController.unfollow(accessToken, idFollow)
+            setIsFollowing(false)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const open_url = () => {
         Linking.openURL(`https://www.instagram.com/${instagram}`)
@@ -18,7 +64,7 @@ export function Social(props) {
                         title="Seguir"
                         buttonStyle={styles.follow}
                         containerStyle={styles.follow}
-                        onPress={() => console.log("SEGUIR USER")}
+                        onPress={follow}
                     />
                 )
                 : null}
@@ -29,7 +75,7 @@ export function Social(props) {
                         icon={{ type: "material-community", name: "account-check-outline" }}
                         buttonStyle={styles.unfollow}
                         containerStyle={styles.unfollow}
-                        onPress={() => console.log("UNFOLLOW USER")}
+                        onPress={unfollow}
                     />
                 )
                 : null

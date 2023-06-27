@@ -40,7 +40,7 @@ export function VideosFavorites(props) {
                     }
                 })()
             },
-            [],
+            [idUser],
         )
     )
 

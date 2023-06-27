@@ -19,7 +19,7 @@ export function UserScreen(props) {
         (async () => {
             try {
                 const response = await userController.get_user(accessToken, idUser)
-                console.log(response);
+                // console.log(response);
                 navigation.setOptions({ title: response.first_name })
                 setUser(response)
             } catch (error) {

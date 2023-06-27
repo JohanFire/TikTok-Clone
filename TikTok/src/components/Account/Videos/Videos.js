@@ -33,7 +33,7 @@ export function Videos(props) {
                 console.error(error);
             }
         })()
-    }, [])
+    }, [idUser])
 
     if (!videos) return null;
 

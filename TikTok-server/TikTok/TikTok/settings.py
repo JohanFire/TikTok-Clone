@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "users",
     "video",
     "comment",
+    "follow",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

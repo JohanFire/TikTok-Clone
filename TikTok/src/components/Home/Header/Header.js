@@ -8,7 +8,7 @@ import { ENV } from "../../../utils";
 export function Header(props) {
     const { typeVideos, setTypeVideos } = props;
 
-    console.log(typeVideos);
+    // console.log(typeVideos);
 
     const onChangeTypeVideos = (type) => {
         setTypeVideos(type);
