@@ -127,4 +127,21 @@ export class Follow{
         if(response.status !== 200) throw result
         return result
     }
+
+    async get_all_followers(token, idUser){
+        const filter = `user_followed=${idUser}`
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.FOLLOW}/?${filter}`;
+        const params = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if(response.status !== 200) throw result;
+
+        return result;
+    }
 }
