@@ -47,8 +47,13 @@ export function Profile(props) {
         }
     };
 
-    const follow = () => {
-        console.log(`Follow user: ${idUser}`);
+    const follow = async () => {
+        try {
+            await followController.follow(accessToken, auth.user_id, idUser);
+            setIsFollowing(true);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

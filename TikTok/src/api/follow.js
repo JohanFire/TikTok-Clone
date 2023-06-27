@@ -54,4 +54,27 @@ export class Follow{
 
         return true; // if it has content
     }
+
+    async follow(token, idUser, idUserFollowed){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.FOLLOW}/`;
+        const params = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                user: idUser,
+                user_followed: idUserFollowed,
+            }),
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        // new records return 201
+        if(response.status !== 201)throw result;
+
+        return result
+    }
 }
