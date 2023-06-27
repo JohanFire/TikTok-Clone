@@ -20,7 +20,7 @@ export function VideosFavorites(props) {
     const go_to_favorite_video = (data) => {
         navigation.navigate(screen.app.videosFavorites, {
             idUser,
-            idVideo: data.id,
+            idVideo: data.video_data.id,
         });
     };
 
