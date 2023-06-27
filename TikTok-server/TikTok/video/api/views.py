@@ -53,13 +53,13 @@ class GetFollowingVideosView(APIView):
 
         videos_following = Video.objects.filter(
             user__in=following_ids
-        ).order_by("--created_at")
+        ).order_by("-created_at")
 
         videos_following_serializer = VideoSerializer(
             data=videos_following, many=True
         )
         videos_following_serializer.is_valid()
 
-        data = videos_following_serializer.data()
+        data = videos_following_serializer.data
 
         return Response(data)

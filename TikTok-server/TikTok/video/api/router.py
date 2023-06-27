@@ -18,5 +18,5 @@ router_video.register(prefix="video_like", basename='video',
                         viewset=VideoLikeApiViewSet)
 
 urlpatterns = [
-    path('folowing_videos/', GetFollowingVideosView.as_view())
+    path('following_videos/', GetFollowingVideosView.as_view())
 ]
