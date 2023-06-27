@@ -77,4 +77,38 @@ export class Follow{
 
         return result
     }
+
+    async unfollow(token, idFollow){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.FOLLOW}/${idFollow}/`;
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(url, params);
+
+        // delete id records return 204
+        if(response.status !== 204)throw "Error..."
+
+        return true;
+    }
+
+    async get_following_id(token, idUser, idUserFollowed){
+        const filter = `user=${idUser}&user_followed=${idUserFollowed}`;
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.FOLLOW}/?${filter}`
+        const params = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if(response.status !== 200) throw result;
+
+        return result[0]
+    }
 }

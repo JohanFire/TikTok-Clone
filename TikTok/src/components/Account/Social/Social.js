@@ -36,6 +36,22 @@ export function Social(props) {
         }
     }
 
+    const unfollow = async () => {
+        try {
+            const response = await followController.get_following_id(
+                accessToken, 
+                auth.user_id,
+                idUser,
+                )
+            const idFollow = response.id;
+
+            await followController.unfollow(accessToken, idFollow)
+            setIsFollowing(false)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const open_url = () => {
         Linking.openURL(`https://www.instagram.com/${instagram}`)
     };
@@ -59,7 +75,7 @@ export function Social(props) {
                         icon={{ type: "material-community", name: "account-check-outline" }}
                         buttonStyle={styles.unfollow}
                         containerStyle={styles.unfollow}
-                        onPress={() => console.log("UNFOLLOW USER")}
+                        onPress={unfollow}
                     />
                 )
                 : null
