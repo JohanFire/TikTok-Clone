@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-elements'
 
 export function FollowersScreen() {
@@ -9,3 +9,7 @@ export function FollowersScreen() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    
+})
