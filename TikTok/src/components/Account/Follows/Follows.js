@@ -12,8 +12,8 @@ const follow = new Follow();
 export function Follows(props) {
     const { idUser } = props;
     const { accessToken } = useAuth();
-    const [followingCount, setFollowingCount] = useState(0)
-    const [followersCount, setFollowersCount] = useState(0)
+    const [followingCount, setFollowingCount] = useState(undefined)
+    const [followersCount, setFollowersCount] = useState(undefined)
     const navigation = useNavigation();
 
     useEffect(() => {
