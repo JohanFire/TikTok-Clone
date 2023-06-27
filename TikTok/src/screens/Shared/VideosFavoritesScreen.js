@@ -8,6 +8,7 @@ import { Video } from "../../api";
 import { VideoFeed } from "../../components/Shared";
 
 const video = new Video();
+const { height } = Dimensions.get("window");
 
 export function VideosFavoritesScreen(props) {
     const {
@@ -20,18 +21,53 @@ export function VideosFavoritesScreen(props) {
     useEffect(() => {
         (async () => {
             try {
-                const response = await video.get_favorite_user_videos(accessToken, params.idUser);
+                const response = await video.get_favorite_user_videos(
+                    accessToken,
+                    params.idUser
+                );
                 setVideos(response);
             } catch (error) {
                 console.error(error);
             }
-        })()
-    }, [params])
-    
+        })();
+    }, [params]);
+
+    useEffect(() => {
+        if (videos) {
+            forEach(videos, (video, index) => {
+                if (video.video_data.id === params.idVideo) {
+                    setIndexStart(index);
+                }
+            });
+        }
+    }, [params, videos]);
+
+    const onViewChangeRef = useRef(({ viewableItems }) => {
+        setIndexStart(viewableItems[0].index);
+    });
+
+    if (!videos || indexStart === null) return null;
 
     return (
-        <View>
-            <Text>VideosFavoritesScreen</Text>
-        </View>
-    )
+        <FlatList
+            data={videos}
+            decelerationRate="fast"
+            keyExtractor={(_, index) => index.toString()}
+            renderItem={({ item, index }) => (
+                <VideoFeed
+                    item={item.video_data}
+                    index={index}
+                    indexShow={indexStart}
+                    style={{ height }}
+                />
+            )}
+            removeClippedSubviews={false}
+            showsVerticalScrollIndicator={false}
+            snapToInterval={height}
+            onViewableItemsChanged={onViewChangeRef.current}
+            viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50 }}
+            initialScrollIndex={indexStart}
+            onScrollToIndexFailed={() => { }}
+        />
+    );
 }
