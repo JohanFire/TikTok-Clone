@@ -47,6 +47,7 @@ urlpatterns = [
     path('api/', include(router_user.urls)),
     path('api/', include("users.api.router")),
     path('api/', include(router_video.urls)),
+    path('api/', include('video.api.router')),
     path('api/', include(router_comment.urls)),
     path('api/', include(router_follow.urls)),
     path('api/', include('follow.api.router')),
