@@ -99,6 +99,7 @@ export function AuthScreen(props) {
                         name='close'
                         size={16}
                         onPress={close_sheet}
+                        color="white"
                     // containerStyle={styles.icon__container}
                     // iconStyle={styles.icon}
                     />
