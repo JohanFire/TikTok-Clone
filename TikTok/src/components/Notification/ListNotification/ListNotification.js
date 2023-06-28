@@ -6,6 +6,7 @@ import { map } from "lodash";
 import { ENV } from "../../../utils";
 import { CommentNotification } from "../CommentNotification";
 import { FollowNotification } from "../FollowNotification";
+import { LikeNotification } from "../LikeNotification";
 
 export function ListNotification(props) {
     const { notifications, refreshing, onRefresh, readNotification } = props;
@@ -46,7 +47,13 @@ export function ListNotification(props) {
                     )
                 }
                 if (notification.type_notification === ENV.TYPE_NOTIFICATION.LIKE) {
-                    return <Text key={notification.id}>LIKE</Text>
+                    return (
+                        <LikeNotification 
+                            key={notification.id}
+                            notification={notification}
+                            readNotification={readNotification}
+                        />
+                    )
                 }
                 if (notification.type_notification === ENV.TYPE_NOTIFICATION.SHARED) {
                     return <Text key={notification.id}>SHARED</Text>
