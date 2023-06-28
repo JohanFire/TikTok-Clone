@@ -12,9 +12,24 @@ export function NotificationsScreen(props) {
     const { navigation } = props;
     const [notifications, setNotifications] = useState(null);
     const [showNotificationRead, setShowNotificationRead] = useState(false)
+    const [refreshing, setRefreshing] = useState(false)
     const { accessToken, auth } = useAuth();
 
-    console.log(notifications);
+    const on_refresh = async () =>  {
+        setRefreshing(true)
+        try {
+            const response = await notificationController.get_user_notifications(
+                accessToken,
+                auth.user_id,
+                showNotificationRead
+            )
+            setNotifications(response)
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setRefreshing(false)
+        }
+    };
 
     useEffect(() => {
         navigation.setOptions({
@@ -53,6 +68,8 @@ export function NotificationsScreen(props) {
     return (
         <ListNotification 
             notifications={notifications}
+            onRefresh={on_refresh}
+            refreshing={refreshing}
         />
     )
 }

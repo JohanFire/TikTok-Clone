@@ -1,15 +1,29 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
 import { Text } from 'react-native-elements'
 import { map } from "lodash";
 
 import { ENV } from "../../../utils";
 
 export function ListNotification(props) {
-    const { notifications } = props;
+    const { notifications, refreshing, onRefresh } = props;
 
     return (
-        <ScrollView>
+        <ScrollView
+            refreshControl={
+                <RefreshControl 
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                >
+                    {refreshing && (
+                        <ActivityIndicator 
+                            size='large'
+                            style={{marginTop: 20}}
+                        />
+                    )}
+                </RefreshControl>
+            }
+        >
             {map(notifications, (notification) => {
                 if(notification.type_notification === ENV.TYPE_NOTIFICATION.COMMENT) {
                     return <Text key={notification.id}>COMMENT</Text>
