@@ -1,16 +1,24 @@
-import React from 'react'
-import { View, SafeAreaView, TouchableOpacity } from 'react-native'
+import React, { useRef } from 'react'
+import { View, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
 import { Text, Button } from 'react-native-elements'
+import RBSheet from "react-native-raw-bottom-sheet";
 
 import { useTheme } from "../../../hooks";
 import { screen } from "../../../utils";
 import { styled } from "./AuthScreen.styles";
 import { Icon } from 'react-native-elements/dist/icons/Icon';
+import { Header } from "../../../components/Shared/VideoFeed/Comments/Header";
+
+const { height } = Dimensions.get('screen');
 
 export function AuthScreen(props) {
     const { navigation } = props;
     const { toggleTheme } = useTheme();
+    const sheet = useRef();
     const styles = styled()
+
+    const open_sheet = () => sheet.current.open();
+    const close_sheet = () => sheet.current.close();
 
     const go_to_register_email = () => {
         navigation.navigate(screen.auth.registerEmail)
@@ -25,7 +33,7 @@ export function AuthScreen(props) {
             <View style={styles.optionContent}>
                 <Text style={styles.title}>
                     Regístrate en <Text style={styles.titleColor}>TikTok Clone</Text>
-                    </Text>
+                </Text>
                 <Text style={styles.info}>
                     Crea un perfil, sigue a tus amigos, sube tus propios TikToks y más.
                 </Text>
@@ -34,13 +42,33 @@ export function AuthScreen(props) {
                     onPress={go_to_register_email}
                     style={styles.itemRegister}
                 >
-                    <Icon 
+                    <Icon
                         type='material-community' name='at'
                     />
                     <Text>Correo electrónico:</Text>
                     <View></View>
                 </TouchableOpacity>
             </View>
+
+            <View style={styles.credits__content}>
+                <View></View>
+                <Icon
+                    type='material-community'
+                    name='chevron-double-up'
+                    size={30}
+                    onPress={open_sheet}
+                    color="white"
+                    containerStyle={{marginBottom: 10}}
+                />
+                <Text
+                    onPress={open_sheet}
+                >
+                    Desarrollado por 
+                    <Text style={{color: "#3498db"}}> Johan Tristán</Text>
+                </Text>
+                <View></View>
+            </View>
+
             <View style={styles.loginContent}>
                 <Text>
                     ¿Ya estás registrado?{" "}
@@ -50,6 +78,34 @@ export function AuthScreen(props) {
                     >Inicia sesión</Text>
                 </Text>
             </View>
+
+
+
+            <RBSheet
+                ref={sheet}
+                height={height - 300}
+                openDuration={200}
+                keyboardAvoidingViewEnabled={false}
+                customStyles={{
+                    container: styles.rb_sheet_container,
+                }}
+            >
+                <View style={styles.header__content}>
+                    <View />
+                    <Text style={{ fontSize: 16 }} >Johan Tristán</Text>
+                    <Icon
+                        type='material-community'
+                        name='close'
+                        size={16}
+                        onPress={close_sheet}
+                    // containerStyle={styles.icon__container}
+                    // iconStyle={styles.icon}
+                    />
+                </View>
+
+                <Text>Johan</Text>
+            </RBSheet>
+
         </SafeAreaView>
     )
 }
