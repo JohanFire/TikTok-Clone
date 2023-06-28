@@ -4,7 +4,7 @@ NotificationTypeEnum = (
     ("FOLLOW", "follow"),
     ("COMMENT", "comment"),
     ("LIKE", "like"),
-    ("SHARED", "shered"),
+    ("SHARED", "shared"),
 )
 
 
