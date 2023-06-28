@@ -4,17 +4,23 @@ import { Input } from 'react-native-elements'
 import { size } from "lodash";
 
 import { useTheme, useAuth } from "../../../../../hooks";
-import { Comment as CommentController } from "../../../../../api";
+import {
+    Comment as CommentController,
+    Notification as NotificationController
+} from "../../../../../api";
+import { ENV } from "../../../../../utils";
 
 const commentController = new CommentController();
+const notificationController = new NotificationController();
 
 export function CommentForm(props) {
     const { idTargetUser, idVideo, onReloadComments } = props;
+    const { accessToken, auth } = useAuth();
+    const idUser = auth.user_id;
     const styles = styled();
     const [keyboardHeight, setKeyboardHeight] = useState(0)
     const [comment, setComment] = useState("");
-    const { accessToken, auth } = useAuth();
-
+    
     useEffect(() => {
         const showSubscription = Keyboard.addListener("keyboardDidShow", (e) => {
             setKeyboardHeight(
@@ -36,8 +42,18 @@ export function CommentForm(props) {
         if (size(comment) > 0) {
             try {
                 await commentController.create(accessToken, comment, auth.user_id, idVideo)
+                
                 setComment("");
                 onReloadComments();
+                
+                await notificationController.create({
+                    token: accessToken,
+                    idUserFollower: idUser,
+                    idTargetUser: 5,
+                    idVideo: idVideo,
+                    comment: comment,
+                    typeNotification: ENV.TYPE_NOTIFICATION.COMMENT,
+                });
             } catch (error) {
                 console.error(error);
             }

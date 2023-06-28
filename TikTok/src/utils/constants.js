@@ -35,7 +35,7 @@ export const ENV = {
     TYPE_NOTIFICATION: {
         SHARED: "SHARED",
         LIKE: "LIKE",
-        COMMENT: "COMMENTED",
+        COMMENT: "COMMENT",
         FOLLOW: "FOLLOW",
     }
 }

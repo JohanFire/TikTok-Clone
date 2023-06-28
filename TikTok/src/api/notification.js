@@ -26,14 +26,14 @@ export class Notification {
                 }),
             };
 
-            const response = await fetch(url, params)
+            const response = await fetch(url, params);
             const result = await response.json();
 
-            if(response.status !== 201) throw result;
-
+            if (response.status !== 201) throw result;
             return true;
         } catch (error) {
             throw error;
         }
     }
+
 }
