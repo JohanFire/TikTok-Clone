@@ -7,7 +7,7 @@ import { ENV } from "../../../utils";
 import { CommentNotification } from "../CommentNotification";
 
 export function ListNotification(props) {
-    const { notifications, refreshing, onRefresh } = props;
+    const { notifications, refreshing, onRefresh, readNotification } = props;
 
     return (
         <ScrollView
@@ -31,7 +31,7 @@ export function ListNotification(props) {
                         <CommentNotification 
                             key={notification.id}
                             notification={notification}
-                            readNotification={() => console.log("MARK AS READ")}
+                            readNotification={readNotification}
                         />
                     )
                 }

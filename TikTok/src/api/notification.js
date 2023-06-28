@@ -53,4 +53,23 @@ export class Notification {
         return result;
     }
 
+    async mark_notification_as_read(token, idNotification){
+        const url = `${ENV.BASE_API}/${ENV.API_ROUTES.NOTIFICATION}/${idNotification}/`;
+        const params = {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({read: true}),
+        };
+        
+        const response = await fetch(url, params);
+        const result = await response.json();
+
+        if(response.status !== 200) throw result;
+
+        return result;
+    }
+
 }

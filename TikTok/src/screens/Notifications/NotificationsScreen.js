@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View } from 'react-native'
-import { Text, Icon } from 'react-native-elements'
+import { Alert } from 'react-native'
+import { Icon } from 'react-native-elements'
 
 import { Notification } from "../../api";
 import { useAuth } from "../../hooks";
@@ -15,7 +15,7 @@ export function NotificationsScreen(props) {
     const [refreshing, setRefreshing] = useState(false)
     const { accessToken, auth } = useAuth();
 
-    const on_refresh = async () =>  {
+    const on_refresh = async () => {
         setRefreshing(true)
         try {
             const response = await notificationController.get_user_notifications(
@@ -31,18 +31,36 @@ export function NotificationsScreen(props) {
         }
     };
 
+    const read_notification = (idNotification, setIsRead) => {
+        Alert.alert("¿Marcar como leído?", "", [{
+            text: "No",
+            style: "cancel",
+        },
+        {
+            text: "Sí",
+            onPress: async () => {
+                try {
+                    await notificationController.mark_notification_as_read(accessToken, idNotification)
+                    setIsRead(true)
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }])
+    };
+
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
                 <Icon
                     type='material-community'
-                    name={showNotificationRead 
-                        ? 'eye-off-outline' 
+                    name={showNotificationRead
+                        ? 'eye-off-outline'
                         : 'eye-outline'
                     }
                     size={24}
                     onPress={() => setShowNotificationRead(prevState => !prevState)}
-                    style={{marginRight: 10}}
+                    style={{ marginRight: 10 }}
                 />
             )
         })
@@ -63,13 +81,14 @@ export function NotificationsScreen(props) {
         })()
     }, [showNotificationRead])
 
-    if(!notifications) return null
+    if (!notifications) return null
 
     return (
-        <ListNotification 
+        <ListNotification
             notifications={notifications}
             onRefresh={on_refresh}
             refreshing={refreshing}
+            readNotification={read_notification}
         />
     )
 }

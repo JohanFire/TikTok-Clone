@@ -10,11 +10,16 @@ import { screen } from "../../../utils";
 export function CommentNotification(props) {
     const { notification, readNotification } = props;
     const userFollower = notification.user_follower_data
-    const [isRead, setIsRead] = useState(false);
+    const [isRead, setIsRead] = useState(notification.read);
     const video = notification.video_data;
 
+    const onReadNotification = () =>  readNotification(notification.id, setIsRead)
+
     return (
-        <Pressable style={[styles.content, isRead && styles.inactive]} >
+        <Pressable 
+            style={[styles.content, isRead && styles.inactive]} 
+            onLongPress={!isRead ? onReadNotification : null}
+        >
             <View style={styles.left__content}>
                 <Avatar
                     source={userFollower.avatar ? { uri: userFollower.avatar } : LOGO}
