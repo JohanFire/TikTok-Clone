@@ -4,6 +4,7 @@ import { Text } from 'react-native-elements'
 import { map } from "lodash";
 
 import { ENV } from "../../../utils";
+import { CommentNotification } from "../CommentNotification";
 
 export function ListNotification(props) {
     const { notifications, refreshing, onRefresh } = props;
@@ -26,7 +27,13 @@ export function ListNotification(props) {
         >
             {map(notifications, (notification) => {
                 if(notification.type_notification === ENV.TYPE_NOTIFICATION.COMMENT) {
-                    return <Text key={notification.id}>COMMENT</Text>
+                    return (
+                        <CommentNotification 
+                            key={notification.id}
+                            notification={notification}
+                            readNotification={() => console.log("MARK AS READ")}
+                        />
+                    )
                 }
                 if(notification.type_notification === ENV.TYPE_NOTIFICATION.FOLLOW) {
                     return <Text key={notification.id}>FOLLOW</Text>
