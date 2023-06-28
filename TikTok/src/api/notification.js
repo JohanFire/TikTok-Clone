@@ -36,7 +36,7 @@ export class Notification {
         }
     }
 
-    async get_by_user(token, idUser, read=false){
+    async get_user_notifications(token, idUser, read=false){
         const filter = `user=${idUser}&read=${read}`;
         const url = `${ENV.BASE_API}/${ENV.API_ROUTES.NOTIFICATION}/?${filter}`;
         const params = {
