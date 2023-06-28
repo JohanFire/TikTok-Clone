@@ -4,8 +4,9 @@ import { Text, Icon } from 'react-native-elements'
 
 import { Notification } from "../../api";
 import { useAuth } from "../../hooks";
+import { ListNotification } from "../../components/Notification";
 
-const notification = new Notification();
+const notificationController = new Notification();
 
 export function NotificationsScreen(props) {
     const { navigation } = props;
@@ -32,11 +33,10 @@ export function NotificationsScreen(props) {
         })
     }, [showNotificationRead])
 
-
     useEffect(() => {
         (async () => {
             try {
-                const response = await notification.get_user_notifications(
+                const response = await notificationController.get_user_notifications(
                     accessToken,
                     auth.user_id,
                     showNotificationRead
@@ -48,10 +48,11 @@ export function NotificationsScreen(props) {
         })()
     }, [showNotificationRead])
 
+    if(!notifications) return null
 
     return (
-        <View>
-            <Text>NotificationsScreen</Text>
-        </View>
+        <ListNotification 
+            notifications={notifications}
+        />
     )
 }
