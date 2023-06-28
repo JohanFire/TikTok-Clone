@@ -40,7 +40,6 @@ export function FollowNotification(props) {
 
                     <Text
                         style={styles.text}
-                        numberOfLines={3}
                     >comenzó a seguirte</Text>
 
                     <Text
