@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Linking } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 
-import { Follow } from "../../../api";
+import { Follow, Notification } from "../../../api";
 import { useAuth } from "../../../hooks";
+import { ENV } from "../../../utils";
 
 const followController = new Follow();
+const notification = new Notification();
 
 export function Social(props) {
     const { idUser, instagram } = props;
@@ -30,6 +32,14 @@ export function Social(props) {
     const follow = async () => {
         try {
             await followController.follow(accessToken, auth.user_id, idUser);
+
+            await notification.create({
+                token: accessToken,
+                idUserFollower: auth.user_id,
+                idTargetUser: idUser,
+                typeNotification: ENV.TYPE_NOTIFICATION.FOLLOW,
+            })
+
             setIsFollowing(true)
         } catch (error) {
             console.error(error);
