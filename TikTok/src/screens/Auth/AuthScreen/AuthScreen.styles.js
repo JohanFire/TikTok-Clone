@@ -57,8 +57,8 @@ export const styled = () => {
             fontWeight: "bold"
         },
 
-        
-        credits__content:{
+
+        credits__content: {
             alignItems: "center",
             marginBottom: -350,
         },
@@ -67,10 +67,26 @@ export const styled = () => {
             borderTopRightRadius: 10,
             backgroundColor: theme.Default.background,
         },
-        header__content:{
+        header__content: {
             flexDirection: "row",
             justifyContent: "space-between",
             padding: 10,
+        },
+        credits__info: {
+            alignItems: "center",
+            marginTop: 20,
+        },
+        avatar: {
+            backgroundColor: "#e74c3c",
+            padding: 5,
+        },
+        name: {
+            marginTop: 15,
+            fontSize: 24,
+        },
+        username: {
+            opacity: 0.4,
+            fontSize: 16,
         },
     });
 };

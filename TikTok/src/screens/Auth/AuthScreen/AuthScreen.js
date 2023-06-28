@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { View, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
-import { Text, Button } from 'react-native-elements'
+import { Text, Button, Avatar } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 
 import { useTheme } from "../../../hooks";
@@ -8,6 +8,7 @@ import { screen } from "../../../utils";
 import { styled } from "./AuthScreen.styles";
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { Header } from "../../../components/Shared/VideoFeed/Comments/Header";
+import { JOHANFIRE } from "../../../../assets/images";
 
 const { height } = Dimensions.get('screen');
 
@@ -58,13 +59,13 @@ export function AuthScreen(props) {
                     size={30}
                     onPress={open_sheet}
                     color="white"
-                    containerStyle={{marginBottom: 10}}
+                    containerStyle={{ marginBottom: 10 }}
                 />
                 <Text
                     onPress={open_sheet}
                 >
-                    Desarrollado por 
-                    <Text style={{color: "#3498db"}}> Johan Tristán</Text>
+                    Desarrollado por
+                    <Text style={{ color: "#e74c3c" }}> Johan Tristán</Text>
                 </Text>
                 <View></View>
             </View>
@@ -92,7 +93,7 @@ export function AuthScreen(props) {
             >
                 <View style={styles.header__content}>
                     <View />
-                    <Text style={{ fontSize: 16 }} >Johan Tristán</Text>
+                    <Text style={{ fontSize: 16 }} >Desarrollado por</Text>
                     <Icon
                         type='material-community'
                         name='close'
@@ -103,7 +104,17 @@ export function AuthScreen(props) {
                     />
                 </View>
 
-                <Text>Johan</Text>
+                <View style={styles.credits__info}>
+                    <Avatar
+                        size={160}
+                        source={JOHANFIRE}
+                        rounded
+                        containerStyle={styles.avatar}
+                    />
+                    <Text style={styles.name} >Johan Tristán</Text>
+                    <Text style={styles.username} >(JohanFire)</Text>
+                </View>
+
             </RBSheet>
 
         </SafeAreaView>
