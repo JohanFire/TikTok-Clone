@@ -56,7 +56,7 @@ export function VideoFeed(props) {
                         idTargetUser={user.id}
                     />
                     <Comments 
-                        idUser={user.is}
+                        idUser={user.id}
                         idVideo={item.id}
                     />
                     <Share 

@@ -8,10 +8,11 @@ import {
     DEFAULT_USER_AVATAR_2
 } from "../../../../../assets/images";
 import { useAuth } from "../../../../hooks";
-import { screen } from "../../../../utils";
-import { Follow } from "../../../../api";
+import { screen, ENV } from "../../../../utils";
+import { Follow, Notification } from "../../../../api";
 
 const followController = new Follow();
+const notification = new Notification();
 
 export function Profile(props) {
     const { idUser, image } = props;
@@ -50,6 +51,14 @@ export function Profile(props) {
     const follow = async () => {
         try {
             await followController.follow(accessToken, auth.user_id, idUser);
+
+            await notification.create({
+                token: accessToken,
+                idUserFollower: auth.user_id,
+                idTargetUser: idUser,
+                typeNotification: ENV.TYPE_NOTIFICATION.FOLLOW,
+            })
+
             setIsFollowing(true);
         } catch (error) {
             console.error(error);

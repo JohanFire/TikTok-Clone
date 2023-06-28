@@ -18,6 +18,7 @@ export const ENV = {
         FOLLOW: "follow",
         FOLLOWING_COUNT: "follow/following/count",
         FOLLOWERS_COUNT: "follow/followers/count",
+        NOTIFICATION: "notification",
     },
 
     JWT:{
@@ -31,4 +32,10 @@ export const ENV = {
     },
 
     TAB_MENU_HEIGHT: 70,
+    TYPE_NOTIFICATION: {
+        SHARED: "SHARED",
+        LIKE: "LIKE",
+        COMMENT: "COMMENT",
+        FOLLOW: "FOLLOW",
+    }
 }

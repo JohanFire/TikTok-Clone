@@ -84,7 +84,6 @@ export function Comments(props) {
                         >Sé el primero en comentar</Text>
                     }
                 />
-
                 <CommentForm 
                     idTargetUser={idUser}
                     idVideo={idVideo}

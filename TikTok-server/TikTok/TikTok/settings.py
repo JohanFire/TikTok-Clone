@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "video",
     "comment",
     "follow",
+    "notification",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,7 +136,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=1),
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=20),
     "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=7)
 }
 
