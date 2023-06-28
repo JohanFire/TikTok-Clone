@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 import { StyleSheet, View, Share as ShareReactNative } from 'react-native'
 import { Text, Icon } from 'react-native-elements'
 
-import { nFormatter } from "../../../../utils";
-import { Video } from "../../../../api";
+import { nFormatter, ENV } from "../../../../utils";
+import { Video, Notification } from "../../../../api";
 import { useAuth } from "../../../../hooks";
 
 const video = new Video();
+const notification = new Notification();
 
 export function Share(props) {
     const { idVideo, shared_counter, idTargetUser } = props;
@@ -21,7 +22,14 @@ export function Share(props) {
 
             if (result.action === ShareReactNative.sharedAction) {
                 on_update_share_counter();
-                // console.log("Update Counter Share Video: ", result);
+
+                await notification.create({
+                    token: accessToken,
+                    idUserFollower: auth.user_id,
+                    idTargetUser: idTargetUser,
+                    idVideo: idVideo,
+                    typeNotification: ENV.TYPE_NOTIFICATION.SHARED,
+                })
             }
         } catch (error) {
             console.error(error);
