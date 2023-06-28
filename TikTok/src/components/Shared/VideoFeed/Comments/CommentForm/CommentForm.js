@@ -42,18 +42,17 @@ export function CommentForm(props) {
         if (size(comment) > 0) {
             try {
                 await commentController.create(accessToken, comment, auth.user_id, idVideo)
-                
-                setComment("");
-                onReloadComments();
-                
                 await notificationController.create({
                     token: accessToken,
                     idUserFollower: idUser,
-                    idTargetUser: 5,
+                    idTargetUser: idTargetUser,
                     idVideo: idVideo,
                     comment: comment,
                     typeNotification: ENV.TYPE_NOTIFICATION.COMMENT,
                 });
+                
+                setComment("");
+                onReloadComments();
             } catch (error) {
                 console.error(error);
             }
