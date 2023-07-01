@@ -56,37 +56,5 @@ export const styled = () => {
             color: '#2186d0',
             fontWeight: "bold"
         },
-
-
-        credits__content: {
-            alignItems: "center",
-            marginBottom: -350,
-        },
-        rb_sheet_container: {
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-            backgroundColor: theme.Default.background,
-        },
-        header__content: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            padding: 10,
-        },
-        credits__info: {
-            alignItems: "center",
-            marginTop: 20,
-        },
-        avatar: {
-            backgroundColor: "#e74c3c",
-            padding: 5,
-        },
-        name: {
-            marginTop: 15,
-            fontSize: 24,
-        },
-        username: {
-            opacity: 0.4,
-            fontSize: 16,
-        },
     });
 };
