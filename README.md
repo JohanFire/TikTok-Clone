@@ -7,7 +7,7 @@ A TikTok clone using Django + React Native
 
 [https://youtu.be/IibyFceZfn4](https://youtu.be/IibyFceZfn4)
 
-<iframe width="854" height="480" src="https://www.youtube-nocookie.com/embed/IibyFceZfn4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+[![Alt text](https://img.youtube.com/vi/IibyFceZfn4/0.jpg)](https://www.youtube.com/watch?v=IibyFceZfn4)
 
 
 
