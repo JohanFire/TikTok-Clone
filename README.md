@@ -14,8 +14,6 @@ A TikTok clone using Django + React Native
 ---
 
 # Installation
-
----
 ## Python enviroment
 Create enviroment inside TikTok-server directory:
 ```bash
