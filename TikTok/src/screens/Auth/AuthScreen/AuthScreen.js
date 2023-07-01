@@ -1,15 +1,14 @@
 import React from 'react'
-import { View, SafeAreaView, TouchableOpacity } from 'react-native'
-import { Text, Button } from 'react-native-elements'
+import { View, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
+import { Text, Button, Avatar } from 'react-native-elements'
 
-import { useTheme } from "../../../hooks";
 import { screen } from "../../../utils";
 import { styled } from "./AuthScreen.styles";
 import { Icon } from 'react-native-elements/dist/icons/Icon';
+import { Credits } from "../../../components/Credits";
 
 export function AuthScreen(props) {
     const { navigation } = props;
-    const { toggleTheme } = useTheme();
     const styles = styled()
 
     const go_to_register_email = () => {
@@ -25,7 +24,7 @@ export function AuthScreen(props) {
             <View style={styles.optionContent}>
                 <Text style={styles.title}>
                     Regístrate en <Text style={styles.titleColor}>TikTok Clone</Text>
-                    </Text>
+                </Text>
                 <Text style={styles.info}>
                     Crea un perfil, sigue a tus amigos, sube tus propios TikToks y más.
                 </Text>
@@ -34,13 +33,16 @@ export function AuthScreen(props) {
                     onPress={go_to_register_email}
                     style={styles.itemRegister}
                 >
-                    <Icon 
+                    <Icon
                         type='material-community' name='at'
                     />
                     <Text>Correo electrónico:</Text>
                     <View></View>
                 </TouchableOpacity>
             </View>
+
+            <Credits />
+
             <View style={styles.loginContent}>
                 <Text>
                     ¿Ya estás registrado?{" "}
