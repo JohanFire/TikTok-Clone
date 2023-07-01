@@ -4,10 +4,12 @@ import {
     SafeAreaView,
     TouchableOpacity,
     Dimensions,
-    StyleSheet
+    StyleSheet,
+    Linking
 } from 'react-native'
 import { Text, Button, Avatar, Icon } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
+import * as WebBrowser from "expo-web-browser";
 
 import { useTheme } from "../../hooks";
 import { screen } from "../../utils";
@@ -23,6 +25,22 @@ export function Credits() {
 
     const open_sheet = () => sheet.current.open();
     const close_sheet = () => sheet.current.close();
+
+    const open_johanfire_web = () => {
+        WebBrowser.openBrowserAsync("https://www.johanfire.com/")
+    };
+
+    const open_instagram = () => {
+        Linking.openURL('https://www.instagram.com/johanfireok/');
+    };
+
+    const open_linkedin = () => {
+        Linking.openURL('https://www.linkedin.com/in/johanfire/');
+    };
+
+    const open_github = () => {
+        Linking.openURL('https://github.com/johanfire');
+    };
 
     return (
         <>
@@ -78,6 +96,7 @@ export function Credits() {
                     />
                     <Text style={styles.name} >Johan Tristán</Text>
                     <Text style={styles.username} >(JohanFire)</Text>
+                    <Text style={styles.description} >Software Developer</Text>
 
                     <View style={styles.social}>
                         <View style={styles.links}>
@@ -85,30 +104,52 @@ export function Credits() {
                                 type='material-community'
                                 name='link-variant'
                                 size={26}
-                                // onPress={}
+                                onPress={open_johanfire_web}
                             />
                             <View />
-                            <Text style={styles.text} >www.johanfire.com</Text>
+                            <Text
+                                style={styles.text}
+                                onPress={open_johanfire_web}
+                            >www.johanfire.com</Text>
                         </View>
-                        <View style={styles.links}>
+                        <View style={styles.links} >
                             <Icon
                                 type='material-community'
                                 name='linkedin'
                                 size={26}
-                                // onPress={}
+                                onPress={open_linkedin}
                             />
                             <View />
-                            <Text style={styles.text__variant} >/johanfire</Text>
+                            <Text 
+                                style={styles.text__variant} 
+                                onPress={open_linkedin}
+                            >/johanfire</Text>
                         </View>
                         <View style={styles.links}>
                             <Icon
                                 type='material-community'
                                 name='github'
                                 size={26}
-                                // onPress={}
+                                onPress={open_github}
                             />
                             <View />
-                            <Text style={styles.text__variant} >/johanfire</Text>
+                            <Text 
+                                style={styles.text__variant} 
+                                onPress={open_github}
+                            >/johanfire</Text>
+                        </View>
+                        <View style={styles.links}>
+                            <Icon
+                                type='material-community'
+                                name='instagram'
+                                size={26}
+                                onPress={open_instagram}
+                            />
+                            <View />
+                            <Text
+                                style={styles.text__variant__02}
+                                onPress={open_instagram}
+                            >/johanfireok</Text>
                         </View>
                     </View>
 
@@ -152,7 +193,7 @@ const styled = () => {
             links: {
                 flexDirection: "row",
                 justifyContent: "space-between",
-                marginBottom: 10
+                marginBottom: 10,
             },
             name: {
                 marginTop: 15,
@@ -162,14 +203,25 @@ const styled = () => {
                 opacity: 0.4,
                 fontSize: 16,
             },
+            description:{
+                marginTop: 10,
+                fontSize: 16,
+            },
             text: {
                 fontSize: 18,
                 marginLeft: 10,
                 // margin: 10,
+                color: "#3498db",
             },
             text__variant: {
                 fontSize: 18,
                 marginRight: 75,
+                color: "#3498db",
+            },
+            text__variant__02: {
+                fontSize: 18,
+                marginRight: 57,
+                color: "#3498db",
             },
             icon__container: {
                 width: 14,
