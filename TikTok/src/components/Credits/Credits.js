@@ -78,6 +78,41 @@ export function Credits() {
                     />
                     <Text style={styles.name} >Johan Tristán</Text>
                     <Text style={styles.username} >(JohanFire)</Text>
+
+                    <View style={styles.social}>
+                        <View style={styles.links}>
+                            <Icon
+                                type='material-community'
+                                name='link-variant'
+                                size={26}
+                                // onPress={}
+                            />
+                            <View />
+                            <Text style={styles.text} >www.johanfire.com</Text>
+                        </View>
+                        <View style={styles.links}>
+                            <Icon
+                                type='material-community'
+                                name='linkedin'
+                                size={26}
+                                // onPress={}
+                            />
+                            <View />
+                            <Text style={styles.text__variant} >/johanfire</Text>
+                        </View>
+                        <View style={styles.links}>
+                            <Icon
+                                type='material-community'
+                                name='github'
+                                size={26}
+                                // onPress={}
+                            />
+                            <View />
+                            <Text style={styles.text__variant} >/johanfire</Text>
+                        </View>
+                    </View>
+
+
                 </View>
 
             </RBSheet>
@@ -105,11 +140,19 @@ const styled = () => {
             },
             credits__info: {
                 alignItems: "center",
-                marginTop: 20,
+                marginTop: 30,
             },
             avatar: {
                 backgroundColor: "#e74c3c",
                 padding: 5,
+            },
+            social: {
+                padding: 35
+            },
+            links: {
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginBottom: 10
             },
             name: {
                 marginTop: 15,
@@ -118,6 +161,20 @@ const styled = () => {
             username: {
                 opacity: 0.4,
                 fontSize: 16,
+            },
+            text: {
+                fontSize: 18,
+                marginLeft: 10,
+                // margin: 10,
+            },
+            text__variant: {
+                fontSize: 18,
+                marginRight: 75,
+            },
+            icon__container: {
+                width: 14,
+                height: 14,
+                marginRight: 5,
             },
         })
     )
