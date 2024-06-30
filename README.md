@@ -1,4 +1,14 @@
 # TikTok-Clone
+![GitHub stars](https://img.shields.io/github/stars/johanfire/tiktok-clone)
+![GitHub forks](https://img.shields.io/github/forks/johanfire/tiktok-clone)
+![GitHub watchers](https://img.shields.io/github/watchers/johanfire/tiktok-clone?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/johanfire/tiktok-clone)
+![GitHub language count](https://img.shields.io/github/languages/count/johanfire/tiktok-clone)
+![GitHub top language](https://img.shields.io/github/languages/top/johanfire/tiktok-clone)
+![GitHub last commit](https://img.shields.io/github/last-commit/johanfire/tiktok-clone?color=red)
+[![Discord](https://img.shields.io/badge/Discord-JohanFire_test-blue?logo=discord&logoColor=white)](https://discord.gg/InvitationCode)
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/johanfire)
+
 A TikTok clone using Django + React Native
 
 ---
